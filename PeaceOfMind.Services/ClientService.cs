@@ -76,7 +76,7 @@ namespace PeaceOfMind.Services
             }
         }
 
-        public bool UpdateNote(ClientEdit model)
+        public bool UpdateClient(ClientEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -95,7 +95,7 @@ namespace PeaceOfMind.Services
             }
         }
 
-        public bool DeleteNote(int serviceId)
+        public bool DeleteClient(int serviceId)
         {
             using (var ctx = new ApplicationDbContext())
             {
