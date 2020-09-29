@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PeaceOfMind.Models.Cat
 {
-    class CatDetail
+    public class CatDetail
     {
         public int CatId { get; set; }
         public string Name { get; set; }

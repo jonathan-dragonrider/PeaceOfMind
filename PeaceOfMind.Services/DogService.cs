@@ -1,5 +1,5 @@
 ﻿using PeaceOfMind.Data;
-using PeaceOfMind.Models.Horse;
+using PeaceOfMind.Models.Dog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace PeaceOfMind.Services
 {
-    public class HorseService
+    public class DogService
     {
         private readonly Guid _userId;
 
-        public HorseService(Guid userId)
+        public DogService(Guid userId)
         {
             _userId = userId;
         }
 
-        public bool CreateHorse(HorseCreate model)
+        public bool CreateDog(DogCreate model)
         {
             var entity =
-                new Horse()
+                new Dog()
                 {
                     Name = model.Name,
                     ClientId = model.ClientId,
@@ -28,23 +28,23 @@ namespace PeaceOfMind.Services
 
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Horses.Add(entity);
+                ctx.Dogs.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public IEnumerable<HorseListItem> GetHorses()
+        public IEnumerable<DogListItem> GetDogs()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
-                        .Horses
+                        .Dogs
                         .Select(
                             e =>
-                                new HorseListItem
+                                new DogListItem
                                 {
-                                    HorseId = e.HorseId,
+                                    DogId = e.DogId,
                                     Name = e.Name,
                                 }
                         );
@@ -53,32 +53,32 @@ namespace PeaceOfMind.Services
             }
         }
 
-        public HorseDetail GetHorseById(int id)
+        public DogDetail GetDogById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Horses
-                        .Single(e => e.HorseId == id);
+                        .Dogs
+                        .Single(e => e.DogId == id);
                 return
-                    new HorseDetail
+                    new DogDetail
                     {
-                        HorseId = entity.HorseId,
+                        DogId = entity.DogId,
                         Name = entity.Name,
                         ClientId = entity.ClientId,
                     };
             }
         }
 
-        public bool UpdateNote(HorseEdit model)
+        public bool UpdateNote(DogEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Horses
-                        .Single(e => e.HorseId == model.HorseId);
+                        .Dogs
+                        .Single(e => e.DogId == model.DogId);
 
                 entity.Name = model.Name;
                 entity.ClientId = model.ClientId;
@@ -93,10 +93,10 @@ namespace PeaceOfMind.Services
             {
                 var entity =
                     ctx
-                        .Horses
-                        .Single(e => e.HorseId == serviceId);
+                        .Dogs
+                        .Single(e => e.DogId == serviceId);
 
-                ctx.Horses.Remove(entity);
+                ctx.Dogs.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
             }

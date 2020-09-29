@@ -1,5 +1,5 @@
 ﻿using PeaceOfMind.Data;
-using PeaceOfMind.Models.Horse;
+using PeaceOfMind.Models.Job;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,44 +8,49 @@ using System.Threading.Tasks;
 
 namespace PeaceOfMind.Services
 {
-    public class HorseService
+    public class JobService
     {
         private readonly Guid _userId;
 
-        public HorseService(Guid userId)
+        public JobService(Guid userId)
         {
             _userId = userId;
         }
 
-        public bool CreateHorse(HorseCreate model)
+        public bool CreateJob(JobCreate model)
         {
             var entity =
-                new Horse()
+                new Job()
                 {
-                    Name = model.Name,
                     ClientId = model.ClientId,
+                    ServiceId = model.ServiceId,
+                    StartTime = model.StartTime,
+                    Note = model.Note
                 };
 
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Horses.Add(entity);
+                ctx.Jobs.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
 
-        public IEnumerable<HorseListItem> GetHorses()
+        public IEnumerable<JobListItem> GetJobs()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
-                        .Horses
+                        .Jobs
                         .Select(
                             e =>
-                                new HorseListItem
+                                new JobListItem
                                 {
-                                    HorseId = e.HorseId,
-                                    Name = e.Name,
+                                    JobId = e.JobId,
+                                    ClientId = e.ClientId,
+                                    ServiceId = e.ServiceId,
+                                    StartTime = e.StartTime,
+                                    EndTime = e.EndTime
                                 }
                         );
 
@@ -53,35 +58,40 @@ namespace PeaceOfMind.Services
             }
         }
 
-        public HorseDetail GetHorseById(int id)
+        public JobDetail GetJobById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Horses
-                        .Single(e => e.HorseId == id);
+                        .Jobs
+                        .Single(e => e.JobId == id);
                 return
-                    new HorseDetail
+                    new JobDetail
                     {
-                        HorseId = entity.HorseId,
-                        Name = entity.Name,
-                        ClientId = entity.ClientId,
+                        JobId = entity.JobId,
+                        ServiceId = entity.ServiceId,
+                        StartTime = entity.StartTime,
+                        EndTime = entity.EndTime,
+                        Note = entity.Note
                     };
             }
         }
 
-        public bool UpdateNote(HorseEdit model)
+        public bool UpdateNote(JobEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Horses
-                        .Single(e => e.HorseId == model.HorseId);
+                        .Jobs
+                        .Single(e => e.JobId == model.JobId);
 
-                entity.Name = model.Name;
                 entity.ClientId = model.ClientId;
+                entity.ServiceId = model.ServiceId;
+                entity.StartTime = model.StartTime;
+                entity.Note = model.Note;
+
 
                 return ctx.SaveChanges() == 1;
             }
@@ -93,10 +103,10 @@ namespace PeaceOfMind.Services
             {
                 var entity =
                     ctx
-                        .Horses
-                        .Single(e => e.HorseId == serviceId);
+                        .Jobs
+                        .Single(e => e.JobId == serviceId);
 
-                ctx.Horses.Remove(entity);
+                ctx.Jobs.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
             }
