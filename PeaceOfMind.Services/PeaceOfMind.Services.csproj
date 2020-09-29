@@ -54,10 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CatService.cs" />
+    <Compile Include="PetService.cs" />
+    <Compile Include="Stretch\CatService.cs" />
     <Compile Include="ClientService.cs" />
-    <Compile Include="DogService.cs" />
-    <Compile Include="HorseService.cs" />
+    <Compile Include="Stretch\DogService.cs" />
+    <Compile Include="Stretch\HorseService.cs" />
     <Compile Include="JobService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceService.cs" />

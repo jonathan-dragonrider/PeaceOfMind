@@ -11,22 +11,13 @@ namespace PeaceOfMind.Data
     {
         public int PetJobAssignId { get; set; }
 
-        [ForeignKey("Dog")]
-        public int DogId { get; set; }
-        public virtual Dog Dog { get; set; }
-
-        [ForeignKey("Cat")]
-        public int CatId { get; set; }
-        public virtual Cat Cat { get; set; }
-
-        [ForeignKey("Horse")]
-        public int HorseId { get; set; }
-        public virtual Horse Horse { get; set; }
+        [ForeignKey("Pet")]
+        public int PetId { get; set; }
+        public virtual Pet Pet { get; set; }
 
         [ForeignKey("Job")]
         public int JobId { get; set; }
         public virtual Job Job { get; set; }
-
 
     }
 }

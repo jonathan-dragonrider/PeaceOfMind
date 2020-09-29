@@ -32,10 +32,7 @@ namespace PeaceOfMind.Data
         public DbSet<Client> Clients { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<Job> Jobs { get; set; }
-        public DbSet<Horse> Horses { get; set; }
-        public DbSet<Dog> Dogs { get; set; }
-        public DbSet<Cat> Cats { get; set; }
-
+        public DbSet<Pet> Pets { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

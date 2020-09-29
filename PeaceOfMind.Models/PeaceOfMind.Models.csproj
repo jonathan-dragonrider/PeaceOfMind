@@ -54,6 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pet\PetCreate.cs" />
+    <Compile Include="Pet\PetDetail.cs" />
+    <Compile Include="Pet\PetEdit.cs" />
+    <Compile Include="Pet\PetListItem.cs" />
     <Compile Include="Stretch\Cat\CatCreate.cs" />
     <Compile Include="Stretch\Cat\CatDetail.cs" />
     <Compile Include="Stretch\Cat\CatEdit.cs" />
