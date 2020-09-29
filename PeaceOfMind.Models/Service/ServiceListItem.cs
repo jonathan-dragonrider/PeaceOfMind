@@ -10,17 +10,8 @@ namespace PeaceOfMind.Models.Service
     public class ServiceListItem
     {
         public int ServiceId { get; set; }
+
         public string Name { get; set; }
-
-        [Display(Name = "$")]
-        public double Price { get; set; }
-
-        public int Minutes { get; set; }
-
-        [Display(Name = "Minimum Time (minutes)")]
-        public int MinMinutes { get; set; }
-
-        public string Description { get; set; }
 
     }
 }

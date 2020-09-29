@@ -68,5 +68,11 @@
   <ItemGroup>
     <Folder Include="Dog\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PeaceOfMind.Data\PeaceOfMind.Data.csproj">
+      <Project>{DB7B45E8-F230-434A-97A4-202237C15C1F}</Project>
+      <Name>PeaceOfMind.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

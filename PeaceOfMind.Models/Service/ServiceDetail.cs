@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PeaceOfMind.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -10,15 +11,14 @@ namespace PeaceOfMind.Models.Service
     public class ServiceDetail
     {
         public int ServiceId { get; set; }
+
         public string Name { get; set; }
 
-        [Display(Name = "$")]
-        public double Price { get; set; }
+        public double Cost { get; set; }
 
-        public int Minutes { get; set; }
+        public int Duration { get; set; }
 
-        [Display(Name = "Minimum Time (minutes)")]
-        public int MinMinutes { get; set; }
+        public DurationUnit DurationUnit { get; set; }
 
         public string Description { get; set; }
 

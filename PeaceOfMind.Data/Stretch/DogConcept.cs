@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PeaceOfMind.Data
 {
-    public class Dog
+    public class DogConcept
     {
         public int DogId { get; set; }
         public string Name { get; set; }

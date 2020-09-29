@@ -24,9 +24,9 @@ namespace PeaceOfMind.Services
                 new Service()
                 {
                     Name = model.Name,
-                    Price = model.Price,
-                    Minutes = model.Minutes,
-                    MinMinutes = model.MinMinutes,
+                    Cost = model.Cost,
+                    Duration = model.Duration,
+                    DurationUnit = model.DurationUnit,
                     Description = model.Description
                 };
 
@@ -50,10 +50,6 @@ namespace PeaceOfMind.Services
                                 {
                                     ServiceId = e.ServiceId,
                                     Name = e.Name,
-                                    Price = e.Price,
-                                    Minutes = e.Minutes,
-                                    MinMinutes = e.MinMinutes,
-                                    Description = e.Description
                                 }
                         );
 
@@ -74,9 +70,9 @@ namespace PeaceOfMind.Services
                     {
                         ServiceId = entity.ServiceId,
                         Name = entity.Name,
-                        Price = entity.Price,
-                        Minutes = entity.Minutes,
-                        MinMinutes = entity.MinMinutes,
+                        Cost = entity.Cost,
+                        Duration = entity.Duration,
+                        DurationUnit = entity.DurationUnit,
                         Description = entity.Description
                     };
             }
@@ -92,9 +88,9 @@ namespace PeaceOfMind.Services
                         .Single(e => e.ServiceId == model.ServiceId);
 
                 entity.Name = model.Name;
-                entity.Price = model.Price;
-                entity.Minutes = model.Minutes;
-                entity.MinMinutes = model.MinMinutes;
+                entity.Cost = model.Cost;
+                entity.Duration = model.Duration;
+                entity.DurationUnit = model.DurationUnit;
                 entity.Description = model.Description;
 
                 return ctx.SaveChanges() == 1;
