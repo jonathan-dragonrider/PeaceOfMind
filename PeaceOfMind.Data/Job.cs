@@ -48,6 +48,8 @@ namespace PeaceOfMind.Data
 
         public string Note { get; set; }
 
+        public virtual ICollection<PetJobAssign> PetJobAssigns { get; set; } = new List<PetJobAssign>();
+
 
         //[ForeignKey("Invoice")]
         //public int InvoiceId { get; set; }

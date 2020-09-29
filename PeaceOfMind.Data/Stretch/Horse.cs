@@ -8,15 +8,18 @@ using System.Threading.Tasks;
 
 namespace PeaceOfMind.Data
 {
-    public class Cat
+    public class Horse
     {
         [Key]
-        public int CatId { get; set; }
+        public int HorseId { get; set; }
 
         public string Name { get; set; }
 
-        [ForeignKey("Client")]
+        [ForeignKey("Owner")]
         public int ClientId { get; set; }
-        public virtual Client Client { get; set; }
+        public virtual Client Owner { get; set; }
+
+        public virtual ICollection<PetJobAssign> PetJobAssigns { get; set; } = new List<PetJobAssign>();
+
     }
 }

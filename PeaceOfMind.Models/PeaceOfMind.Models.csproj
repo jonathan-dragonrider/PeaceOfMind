@@ -54,22 +54,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cat\CatCreate.cs" />
-    <Compile Include="Cat\CatDetail.cs" />
-    <Compile Include="Cat\CatEdit.cs" />
-    <Compile Include="Cat\CatListItem.cs" />
+    <Compile Include="Stretch\Cat\CatCreate.cs" />
+    <Compile Include="Stretch\Cat\CatDetail.cs" />
+    <Compile Include="Stretch\Cat\CatEdit.cs" />
+    <Compile Include="Stretch\Cat\CatListItem.cs" />
     <Compile Include="Client\ClientCreate.cs" />
     <Compile Include="Client\ClientDetail.cs" />
     <Compile Include="Client\ClientEdit.cs" />
     <Compile Include="Client\ClientListItem.cs" />
-    <Compile Include="Dog\DogCreate.cs" />
-    <Compile Include="Dog\DogDetail.cs" />
-    <Compile Include="Dog\DogEdit.cs" />
-    <Compile Include="Dog\DogListItem.cs" />
-    <Compile Include="Horse\HorseCreate.cs" />
-    <Compile Include="Horse\HorseListItem.cs" />
-    <Compile Include="Horse\HorseDetail.cs" />
-    <Compile Include="Horse\HorseEdit.cs" />
+    <Compile Include="Stretch\Dog\DogCreate.cs" />
+    <Compile Include="Stretch\Dog\DogDetail.cs" />
+    <Compile Include="Stretch\Dog\DogEdit.cs" />
+    <Compile Include="Stretch\Dog\DogListItem.cs" />
+    <Compile Include="Stretch\Horse\HorseCreate.cs" />
+    <Compile Include="Stretch\Horse\HorseListItem.cs" />
+    <Compile Include="Stretch\Horse\HorseDetail.cs" />
+    <Compile Include="Stretch\Horse\HorseEdit.cs" />
     <Compile Include="Job\JobCreate.cs" />
     <Compile Include="Job\JobDetail.cs" />
     <Compile Include="Job\JobEdit.cs" />
