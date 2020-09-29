@@ -46,8 +46,11 @@ namespace PeaceOfMind.Data
         public int ServiceId { get; set; }
         public virtual Service Service { get; set; }
 
-        [ForeignKey("Invoice")]
-        public int InvoiceId { get; set; }
-        public virtual Invoice Invoice { get; set; }
+        public string Note { get; set; }
+
+
+        //[ForeignKey("Invoice")]
+        //public int InvoiceId { get; set; }
+        //public virtual Invoice Invoice { get; set; }
     }
 }

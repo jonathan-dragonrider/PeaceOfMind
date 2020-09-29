@@ -33,6 +33,7 @@ namespace PeaceOfMind.Data
         public DbSet<Service> Services { get; set; }
         public DbSet<Job> Jobs { get; set; }
 
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder

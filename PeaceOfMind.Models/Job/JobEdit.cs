@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace PeaceOfMind.Models.Job
 {
-    public class JobCreate
+    public class JobEdit
     {
+        public int JobId { get; set; }
         public int ClientId { get; set; }
         public int ServiceId { get; set; }
         public DateTime StartTime { get; set; }
