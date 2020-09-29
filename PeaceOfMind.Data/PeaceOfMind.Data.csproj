@@ -54,12 +54,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cat.cs" />
-    <Compile Include="Dog.cs" />
-    <Compile Include="Horse.cs" />
+    <Compile Include="Invoice.cs" />
+    <Compile Include="Stretch\Cat.cs" />
+    <Compile Include="Stretch\Dog.cs" />
+    <Compile Include="Stretch\Horse.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Job.cs" />
-    <Compile Include="Person.cs" />
+    <Compile Include="Client.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service.cs" />
   </ItemGroup>

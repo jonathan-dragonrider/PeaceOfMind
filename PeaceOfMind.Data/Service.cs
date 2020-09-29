@@ -8,27 +8,31 @@ namespace PeaceOfMind.Data
 {
     public class Service
     {
-        // Services will only be editable by administrator
-        
         public int ServiceId { get; set; }
 
         public string Name { get; set; }
 
-        // Rate - should time be int? - I might need to do math with it, which doesn't make me want to use string. TimeSpan is another option but it's not really a time interval, more like a defined time amount
-        public double Price { get; set; } // rate numerator
+        public double Cost { get; set; } 
 
-        public int Minutes { get; set; } // rate denominator, if above 60 convert to hours and minutes - somewhere else
+        public int Duration { get; set; }
 
-        public int MinMinutes { get; set; } // in minutes, if above 60 convert to hours and minutes - somewhere else
+        public DurationUnit DurationUnit { get; set; }
 
-        // Should this be in the data layer, or should it just be in html?
-        public string Description { get; set; } // This is where you can add details like "includes 2 visits, feeding and watering, etc"
-
-        // public ServiceType ServiceType { get; set; }
+        public string Description { get; set; } 
 
         public virtual ICollection<Job> Jobs { get; set; } = new List<Job>();
 
 
+        // Additional ideas
+        // public int MinimumDuration { get; set; }
+        // public ServiceType ServiceType { get; set; }
+
+    }
+
+    public enum DurationUnit
+    {
+        Minutes,
+        Hours
     }
 
     //public enum ServiceType

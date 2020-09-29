@@ -15,32 +15,39 @@ namespace PeaceOfMind.Data
 
         public DateTime StartTime { get; set; }
 
-        public DateTime EndTime { get; set; }
-
-        public TimeSpan Duration
+        public DateTime? EndTime
         {
             get
             {
-                return EndTime - StartTime;
+                switch (Service.DurationUnit)
+                {
+                    case DurationUnit.Minutes:
+
+                        TimeSpan timeSpanMinutes = new TimeSpan(0, Service.Duration, 0);
+                        return StartTime + timeSpanMinutes;
+
+                    case DurationUnit.Hours:
+
+                        TimeSpan timeSpanHours = new TimeSpan(Service.Duration, 0, 0);
+                        return StartTime + timeSpanHours;
+
+                    default:
+                        return null;
+                }
             }
         }
 
-        public double NetRevenue { get; set; }
+        [ForeignKey("Client")]
+        public int ClientId { get; set; }
+        public virtual Client Client { get; set; }
 
-        [ForeignKey("Person")]
-        public int PersonId { get; set; }
-        public virtual Person Person { get; set; }
-
-        public string Location
-        {
-            get
-            {
-                return Person.Address;
-            }
-        }
 
         [ForeignKey("Service")]
         public int ServiceId { get; set; }
         public virtual Service Service { get; set; }
+
+        [ForeignKey("Invoice")]
+        public int InvoiceId { get; set; }
+        public virtual Invoice Invoice { get; set; }
     }
 }
