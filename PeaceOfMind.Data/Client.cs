@@ -31,10 +31,7 @@ namespace PeaceOfMind.Data
         public string Address { get; set; }
 
         public virtual ICollection<Job> Jobs { get; set; } = new List<Job>();
-        public virtual ICollection<Dog> Dogs { get; set; } = new List<Dog>();
-        public virtual ICollection<Cat> Cats { get; set; } = new List<Cat>();
-        public virtual ICollection<Horse> Horses { get; set; } = new List<Horse>();
-
+        public virtual ICollection<Pet> Pets { get; set; } = new List<Pet>();
 
 
         // Additional ideas
