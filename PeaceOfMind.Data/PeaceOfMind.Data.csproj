@@ -54,13 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Stretch\Dog.cs" />
     <Compile Include="Pet.cs" />
     <Compile Include="PetJobAssign.cs" />
-    <Compile Include="Stretch\Invoice.cs" />
-    <Compile Include="Stretch\Cat.cs" />
-    <Compile Include="Stretch\DogConcept.cs" />
-    <Compile Include="Stretch\Horse.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Job.cs" />
     <Compile Include="Client.cs" />

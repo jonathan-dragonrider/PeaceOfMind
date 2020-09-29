@@ -169,11 +169,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\PetController.cs" />
-    <Compile Include="Controllers\Stretch\CatController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
-    <Compile Include="Controllers\Stretch\DogController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Stretch\HorseController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
@@ -251,26 +248,19 @@
     <Content Include="Views\Service\Details.cshtml" />
     <Content Include="Views\Service\Edit.cshtml" />
     <Content Include="Views\Service\Delete.cshtml" />
-    <Content Include="Views\Stretch\Dog\Index.cshtml" />
-    <Content Include="Views\Stretch\Dog\Create.cshtml" />
-    <Content Include="Views\Stretch\Dog\Details.cshtml" />
-    <Content Include="Views\Stretch\Dog\Edit.cshtml" />
-    <Content Include="Views\Stretch\Dog\Delete.cshtml" />
-    <Content Include="Views\Stretch\Cat\Index.cshtml" />
-    <Content Include="Views\Stretch\Cat\Create.cshtml" />
-    <Content Include="Views\Stretch\Cat\Details.cshtml" />
-    <Content Include="Views\Stretch\Cat\Edit.cshtml" />
-    <Content Include="Views\Stretch\Cat\Delete.cshtml" />
     <Content Include="Views\Pet\Index.cshtml" />
     <Content Include="Views\Pet\Create.cshtml" />
     <Content Include="Views\Pet\Details.cshtml" />
     <Content Include="Views\Pet\Edit.cshtml" />
     <Content Include="Views\Pet\Delete.cshtml" />
+    <Content Include="Views\Job\Index.cshtml" />
+    <Content Include="Views\Job\Create.cshtml" />
+    <Content Include="Views\Job\Details.cshtml" />
+    <Content Include="Views\Job\Edit.cshtml" />
+    <Content Include="Views\Job\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Job\" />
-    <Folder Include="Views\Stretch\Horse\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
