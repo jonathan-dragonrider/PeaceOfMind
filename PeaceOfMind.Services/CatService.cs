@@ -71,7 +71,7 @@ namespace PeaceOfMind.Services
             }
         }
 
-        public bool UpdateNote(CatEdit model)
+        public bool UpdateCat(CatEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -87,7 +87,7 @@ namespace PeaceOfMind.Services
             }
         }
 
-        public bool DeleteNote(int serviceId)
+        public bool DeleteCat(int serviceId)
         {
             using (var ctx = new ApplicationDbContext())
             {

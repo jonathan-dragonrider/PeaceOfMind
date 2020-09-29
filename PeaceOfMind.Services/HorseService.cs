@@ -71,7 +71,7 @@ namespace PeaceOfMind.Services
             }
         }
 
-        public bool UpdateNote(HorseEdit model)
+        public bool UpdateHorse(HorseEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -87,7 +87,7 @@ namespace PeaceOfMind.Services
             }
         }
 
-        public bool DeleteNote(int serviceId)
+        public bool DeleteHorse(int serviceId)
         {
             using (var ctx = new ApplicationDbContext())
             {

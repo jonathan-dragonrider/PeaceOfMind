@@ -78,7 +78,7 @@ namespace PeaceOfMind.Services
             }
         }
 
-        public bool UpdateNote(JobEdit model)
+        public bool UpdateJob(JobEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -97,7 +97,7 @@ namespace PeaceOfMind.Services
             }
         }
 
-        public bool DeleteNote(int serviceId)
+        public bool DeleteJob(int serviceId)
         {
             using (var ctx = new ApplicationDbContext())
             {
