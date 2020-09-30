@@ -61,6 +61,7 @@ namespace PeaceOfMind.WebMVC.Controllers
             var model =
                 new ServiceEdit
                 {
+                    ServiceId = detail.ServiceId,
                     Name = detail.Name,
                     Cost = detail.Cost,
                     Duration = detail.Duration,

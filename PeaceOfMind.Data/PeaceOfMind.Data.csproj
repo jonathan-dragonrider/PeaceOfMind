@@ -54,6 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\202009301331122_InitialCreate.cs" />
+    <Compile Include="Migrations\202009301331122_InitialCreate.Designer.cs">
+      <DependentUpon>202009301331122_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009301403476_FirstLastRequired.cs" />
+    <Compile Include="Migrations\202009301403476_FirstLastRequired.Designer.cs">
+      <DependentUpon>202009301403476_FirstLastRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pet.cs" />
     <Compile Include="PetJobAssign.cs" />
     <Compile Include="IdentityModels.cs" />
@@ -65,6 +74,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202009301331122_InitialCreate.resx">
+      <DependentUpon>202009301331122_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009301403476_FirstLastRequired.resx">
+      <DependentUpon>202009301403476_FirstLastRequired.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -18,7 +18,7 @@ namespace PeaceOfMind.Data
         public PetType PetType { get; set; }
 
         [ForeignKey("Owner")]
-        public int ClientId { get; set; }
+        public int? ClientId { get; set; }
         public virtual Client Owner { get; set; }
 
         public virtual ICollection<PetJobAssign> PetJobAssigns { get; set; } = new List<PetJobAssign>();

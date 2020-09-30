@@ -48,7 +48,8 @@ namespace PeaceOfMind.Services
                                 new ClientListItem
                                 {
                                     ClientId = e.ClientId,
-                                    FullName = e.FullName,
+                                    FirstName = e.FirstName,
+                                    LastName = e.LastName
                                 }
                         );
 

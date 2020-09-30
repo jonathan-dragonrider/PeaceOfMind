@@ -12,8 +12,10 @@ namespace PeaceOfMind.Data
         [Key]
         public int ClientId { get; set; }
 
+        [Required]
         public string FirstName { get; set; }
 
+        [Required]
         public string LastName { get; set; }
 
         public string FullName
