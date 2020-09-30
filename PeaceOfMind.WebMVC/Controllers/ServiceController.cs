@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using PeaceOfMind.Data;
 using PeaceOfMind.Models;
 using PeaceOfMind.Models.Service;
 using PeaceOfMind.Services;

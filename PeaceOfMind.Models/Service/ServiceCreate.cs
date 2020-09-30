@@ -20,6 +20,7 @@ namespace PeaceOfMind.Models
         public int Duration { get; set; }
 
         [Required]
+        [Display(Name = "Duration Unit")]
         public DurationUnit DurationUnit { get; set; }
 
         public string Description { get; set; }

@@ -18,6 +18,7 @@ namespace PeaceOfMind.Models.Service
 
         public int Duration { get; set; }
 
+        [Display(Name = "Duration Unit")]
         public DurationUnit DurationUnit { get; set; }
 
         public string Description { get; set; }
