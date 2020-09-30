@@ -22,6 +22,12 @@ namespace PeaceOfMind.WebMVC.Controllers
         // GET: Pet/Create
         public ActionResult Create()
         {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new ClientService(userId);
+            var owners = service.GetClients();
+
+            ViewBag.Owners = new SelectList(owners, "ClientId", "FullName");
+
             return View();
         }
 

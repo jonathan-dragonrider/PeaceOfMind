@@ -60,6 +60,7 @@ namespace PeaceOfMind.WebMVC.Controllers
             var model =
                 new ClientEdit
                 {
+                    ClientId = detail.ClientId,
                     FirstName = detail.FirstName,
                     LastName = detail.LastName,
                     Email = detail.Email,

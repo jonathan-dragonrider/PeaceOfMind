@@ -23,8 +23,8 @@ namespace PeaceOfMind.Services
                 new Pet()
                 {
                     Name = model.Name,
-                    ClientId = model.ClientId,
-                    PetType = model.PetType
+                    PetType = model.Type,
+                    ClientId = model.OwnerId
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -104,4 +104,5 @@ namespace PeaceOfMind.Services
             }
         }
     }
+
 }
