@@ -34,6 +34,14 @@ namespace PeaceOfMind.Services
             }
         }
 
+        public IEnumerable<Client> GetOwners()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                return ctx.Clients.ToList();
+            }
+        }
+
         public IEnumerable<PetListItem> GetPets()
         {
             using (var ctx = new ApplicationDbContext())

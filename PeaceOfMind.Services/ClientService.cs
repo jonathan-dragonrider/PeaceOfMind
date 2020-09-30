@@ -49,7 +49,7 @@ namespace PeaceOfMind.Services
                                 {
                                     ClientId = e.ClientId,
                                     FirstName = e.FirstName,
-                                    LastName = e.LastName
+                                    LastName = e.LastName,
                                 }
                         );
 
