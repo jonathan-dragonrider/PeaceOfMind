@@ -61,13 +61,17 @@ namespace PeaceOfMind.WebMVC.Controllers
         public ActionResult Edit(int id)
         {
             var service = CreatePetService();
+
+            var owners = service.GetOwners();
+            ViewBag.ClientId = new SelectList(owners, "ClientId", "FullName");
+
             var detail = service.GetPetById(id);
             var model =
                 new PetEdit
                 {
                     Name = detail.Name,
                     ClientId = detail.ClientId,
-                    PetType = detail.PetType
+                    Type = detail.Type
                 };
             return View(model);
         }
@@ -84,7 +88,10 @@ namespace PeaceOfMind.WebMVC.Controllers
                 return View(model);
             }
 
+
             var service = CreatePetService();
+            var owners = service.GetOwners();
+            ViewBag.ClientId = new SelectList(owners, "ClientId", "FullName");
 
             if (service.UpdatePet(model))
             {

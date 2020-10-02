@@ -46,21 +46,40 @@ namespace PeaceOfMind.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                var query =
-                    ctx
-                        .Pets
-                        .Select(
-                            e =>
-                                new PetListItem
-                                {
-                                    PetId = e.PetId,
-                                    Name = e.Name,
-                                }
-                        );
+                //var query =
+                //    ctx
+                //        .Pets
+                //        .Select(
+                //            e =>
+                //                new PetListItem
+                //                {
+                //                    PetId = e.PetId,
+                //                    Name = e.Name,
+                //                    Owner = e.Owner.FirstName
+                //                }
+                //        );
+                //return query.ToArray();
 
-                return query.ToArray();
+                var pets = ctx.Pets.ToList();
+                var petList = new List<PetListItem>();
+
+                foreach (var pet in pets)
+                {
+                    var newPet = new PetListItem
+                    {
+                        PetId = pet.PetId,
+                        Name = pet.Name,
+                        Owner = pet.Owner.FullName
+                    };
+                    petList.Add(newPet);
+                }
+
+                return petList;
+
             }
         }
+
+        // Why can I access Owner.FullName below but not above?
 
         public PetDetail GetPetById(int id)
         {
@@ -75,8 +94,8 @@ namespace PeaceOfMind.Services
                     {
                         PetId = entity.PetId,
                         Name = entity.Name,
-                        OwnerName = entity.Owner.FullName,
-                        PetType = entity.PetType
+                        Owner = entity.Owner.FullName,
+                        Type = entity.PetType
                     };
             }
         }
