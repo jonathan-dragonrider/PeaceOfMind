@@ -25,7 +25,7 @@ namespace PeaceOfMind.WebMVC.Controllers
             var svc = CreatePetService();
             var owners = svc.GetOwners();
 
-            ViewBag.Owners = new SelectList(owners, "ClientId", "FullName");
+            ViewBag.ClientId = new SelectList(owners, "ClientId", "FullName");
 
             return View();
         }

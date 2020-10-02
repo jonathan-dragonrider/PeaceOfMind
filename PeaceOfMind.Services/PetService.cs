@@ -24,7 +24,7 @@ namespace PeaceOfMind.Services
                 {
                     Name = model.Name,
                     PetType = model.Type,
-                    ClientId = model.OwnerId
+                    ClientId = model.ClientId
                 };
 
             using (var ctx = new ApplicationDbContext())
