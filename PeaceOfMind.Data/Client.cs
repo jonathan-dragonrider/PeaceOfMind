@@ -18,18 +18,13 @@ namespace PeaceOfMind.Data
         [Required]
         public string LastName { get; set; }
 
-        public string FullName
-        {
-            get
-            {
-                return FirstName + " " + LastName;
-            }
-        }
-
+        [Required]
         public string Email { get; set; }
 
+        [Required]
         public string PhoneNumber { get; set; }
 
+        [Required]
         public string Address { get; set; }
 
         public virtual ICollection<Job> Jobs { get; set; } = new List<Job>();
