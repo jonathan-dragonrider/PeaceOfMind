@@ -13,15 +13,17 @@ namespace PeaceOfMind.Data
         [Key]
         public int PetId { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
-        public PetType PetType { get; set; }
+        [Required]
+        public PetType TypeOfPet { get; set; }
 
         [ForeignKey("Owner")]
         public int? ClientId { get; set; }
         public virtual Client Owner { get; set; }
 
-        public virtual ICollection<PetJobAssign> PetJobAssigns { get; set; } = new List<PetJobAssign>();
+        public virtual ICollection<PetToJob> PetsToJobs { get; set; } = new List<PetToJob>();
     }
 
     public enum PetType

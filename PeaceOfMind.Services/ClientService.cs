@@ -68,7 +68,8 @@ namespace PeaceOfMind.Services
                     new ClientDetail
                     {
                         ClientId = entity.ClientId,
-                        Name = entity.FirstName + " " + entity.LastName,
+                        FirstName = entity.FirstName,
+                        LastName = entity.LastName,
                         Email = entity.Email,
                         PhoneNumber = entity.PhoneNumber,
                         Address = entity.Address,

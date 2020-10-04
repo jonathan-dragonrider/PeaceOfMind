@@ -62,9 +62,13 @@
     <Compile Include="Migrations\202009301403476_FirstLastRequired.Designer.cs">
       <DependentUpon>202009301403476_FirstLastRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010041759114_CleanUp.cs" />
+    <Compile Include="Migrations\202010041759114_CleanUp.Designer.cs">
+      <DependentUpon>202010041759114_CleanUp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pet.cs" />
-    <Compile Include="PetJobAssign.cs" />
+    <Compile Include="PetToJob.cs" />
     <Compile Include="IdentityModels.cs" />
     <Compile Include="Job.cs" />
     <Compile Include="Client.cs" />
@@ -81,6 +85,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009301403476_FirstLastRequired.resx">
       <DependentUpon>202009301403476_FirstLastRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010041759114_CleanUp.resx">
+      <DependentUpon>202010041759114_CleanUp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

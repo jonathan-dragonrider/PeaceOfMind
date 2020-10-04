@@ -12,22 +12,21 @@ namespace PeaceOfMind.Data
         [Key]
         public int ServiceId { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
-        public double Cost { get; set; } 
+        [Required]
+        public double Cost { get; set; }
 
+        [Required]
         public int Duration { get; set; }
 
+        [Required]
         public DurationUnit DurationUnit { get; set; }
 
         public string Description { get; set; } 
 
         public virtual ICollection<Job> Jobs { get; set; } = new List<Job>();
-
-
-        // Additional ideas
-        // public int MinimumDuration { get; set; }
-        // public ServiceType ServiceType { get; set; }
 
     }
 
@@ -37,12 +36,5 @@ namespace PeaceOfMind.Data
         Hours
     }
 
-    //public enum ServiceType
-    //{
-    //    Dog,
-    //    Cat,
-    //    Horse,
-    //    Other
-    //}
 }
 

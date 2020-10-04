@@ -13,46 +13,20 @@ namespace PeaceOfMind.Data
         [Key]
         public int JobId { get; set; }
 
+        [Required]
         public DateTime StartTime { get; set; }
 
-        public DateTime? EndTime
-        {
-            get
-            {
-                switch (Service.DurationUnit)
-                {
-                    case DurationUnit.Minutes:
-
-                        TimeSpan timeSpanMinutes = new TimeSpan(0, Service.Duration, 0);
-                        return StartTime + timeSpanMinutes;
-
-                    case DurationUnit.Hours:
-
-                        TimeSpan timeSpanHours = new TimeSpan(Service.Duration, 0, 0);
-                        return StartTime + timeSpanHours;
-
-                    default:
-                        return null;
-                }
-            }
-        }
+        public string Note { get; set; }
 
         [ForeignKey("Client")]
         public int ClientId { get; set; }
         public virtual Client Client { get; set; }
 
-
         [ForeignKey("Service")]
         public int ServiceId { get; set; }
         public virtual Service Service { get; set; }
 
-        public string Note { get; set; }
+        public virtual ICollection<PetToJob> PetsToJobs { get; set; } = new List<PetToJob>();
 
-        public virtual ICollection<PetJobAssign> PetJobAssigns { get; set; } = new List<PetJobAssign>();
-
-
-        //[ForeignKey("Invoice")]
-        //public int InvoiceId { get; set; }
-        //public virtual Invoice Invoice { get; set; }
     }
 }

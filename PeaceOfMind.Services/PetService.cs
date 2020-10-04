@@ -23,7 +23,7 @@ namespace PeaceOfMind.Services
                 new Pet()
                 {
                     Name = model.Name,
-                    PetType = model.Type,
+                    TypeOfPet = model.Type,
                     ClientId = model.ClientId
                 };
 
@@ -46,20 +46,6 @@ namespace PeaceOfMind.Services
         {
             using (var ctx = new ApplicationDbContext())
             {
-                //var query =
-                //    ctx
-                //        .Pets
-                //        .Select(
-                //            e =>
-                //                new PetListItem
-                //                {
-                //                    PetId = e.PetId,
-                //                    Name = e.Name,
-                //                    Owner = e.Owner.FirstName
-                //                }
-                //        );
-                //return query.ToArray();
-
                 var pets = ctx.Pets.ToList();
                 var petList = new List<PetListItem>();
 
@@ -69,7 +55,7 @@ namespace PeaceOfMind.Services
                     {
                         PetId = pet.PetId,
                         Name = pet.Name,
-                        Owner = pet.Owner.FullName
+                        Owner = pet.Owner.FirstName + " " + pet.Owner.LastName
                     };
                     petList.Add(newPet);
                 }
@@ -94,8 +80,8 @@ namespace PeaceOfMind.Services
                     {
                         PetId = entity.PetId,
                         Name = entity.Name,
-                        Owner = entity.Owner.FullName,
-                        Type = entity.PetType
+                        Owner = entity.Owner.FirstName + " " + entity.Owner.LastName,
+                        Type = entity.TypeOfPet
                     };
             }
         }

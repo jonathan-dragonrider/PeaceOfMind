@@ -30,17 +30,6 @@ namespace PeaceOfMind.Data
         public virtual ICollection<Job> Jobs { get; set; } = new List<Job>();
         public virtual ICollection<Pet> Pets { get; set; } = new List<Pet>();
 
-
-        // Additional ideas
-        // public CommunicationType PreferredCommunication { get; set; }
-
     }
-
-    //public enum CommunicationType
-    //{
-    //    Call,
-    //    Text,
-    //    Email
-    //}
 }
 

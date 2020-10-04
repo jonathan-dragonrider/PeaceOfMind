@@ -50,7 +50,6 @@ namespace PeaceOfMind.Services
                                     ClientId = e.ClientId,
                                     ServiceId = e.ServiceId,
                                     StartTime = e.StartTime,
-                                    EndTime = e.EndTime
                                 }
                         );
 
@@ -72,7 +71,6 @@ namespace PeaceOfMind.Services
                         JobId = entity.JobId,
                         ServiceId = entity.ServiceId,
                         StartTime = entity.StartTime,
-                        EndTime = entity.EndTime,
                         Note = entity.Note
                     };
             }

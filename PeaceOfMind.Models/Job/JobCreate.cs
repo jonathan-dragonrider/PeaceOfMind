@@ -13,7 +13,7 @@ namespace PeaceOfMind.Models.Job
         public int ServiceId { get; set; }
         public DateTime StartTime { get; set; }
         public string Note { get; set; }
-        public List<PetJobAssign> MyProperty { get; set; }
+        public List<PetToJob> MyProperty { get; set; }
 
     }
 }

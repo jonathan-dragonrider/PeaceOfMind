@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -7,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace PeaceOfMind.Data
 {
-    public class PetJobAssign
+    public class PetToJob
     {
-        public int PetJobAssignId { get; set; }
+        [Key]
+        public int PetToJobId { get; set; }
 
         [ForeignKey("Pet")]
         public int PetId { get; set; }
