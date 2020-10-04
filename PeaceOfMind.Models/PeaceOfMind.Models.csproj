@@ -75,6 +75,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pet\Owner.cs" />
     <Compile Include="Pet\PetCreate.cs" />
     <Compile Include="Pet\PetDetail.cs" />
     <Compile Include="Pet\PetEdit.cs" />

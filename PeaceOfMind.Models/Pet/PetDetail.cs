@@ -15,6 +15,8 @@ namespace PeaceOfMind.Models.Pet
         public int ClientId { get; set; }
         public string Name { get; set; }
         public string Owner { get; set; }
-        public PetType Type { get; set; }
+
+        [Display(Name = "Type")]
+        public PetType TypeOfPet { get; set; }
     }
 }

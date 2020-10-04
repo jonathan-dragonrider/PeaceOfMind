@@ -11,7 +11,14 @@ namespace PeaceOfMind.WebMVC.Controllers
 {
     public class PetController : Controller
     {
-        // GET: Pet
+        private PetService CreatePetService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new PetService(userId);
+            return service;
+        }
+
+        // GET: Pet/Index view
         public ActionResult Index()
         {
             var service = CreatePetService();
@@ -19,118 +26,97 @@ namespace PeaceOfMind.WebMVC.Controllers
             return View(model);
         }
 
-        // GET: Pet/Create
+        // GET: Pet/Create view
         public ActionResult Create()
         {
-            var svc = CreatePetService();
-            var owners = svc.GetOwners();
-
-            ViewBag.ClientId = new SelectList(owners, "ClientId", "FullName");
+            var service = CreatePetService();
+            var owners = service.GetOwners();
+            ViewBag.ClientId = new SelectList(owners, "ClientId", "Name");
 
             return View();
         }
 
-        // POST: Pet/Create
+        // POST: Pet/Create 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(PetCreate model)
         {
-            if (!ModelState.IsValid) return View(model);
-
-            var service = CreatePetService();
-
-            if (service.CreatePet(model))
+            if (ModelState.IsValid)
             {
-                TempData["SaveResult"] = "Pet created";
+                var service = CreatePetService();
+                service.CreatePet(model);
                 return RedirectToAction("Index");
-            };
-
-            ModelState.AddModelError("", "Pet could not be created.");
+            }
 
             return View(model);
         }
 
+        // GET: Pet/Detail
         public ActionResult Details(int id)
         {
-            var svc = CreatePetService();
-            var model = svc.GetPetById(id);
+            var service = CreatePetService();
+            var model = service.GetPetById(id);
 
             return View(model);
         }
 
+        // GET: Pet/Edit
         public ActionResult Edit(int id)
         {
             var service = CreatePetService();
-
-            var owners = service.GetOwners();
-            ViewBag.ClientId = new SelectList(owners, "ClientId", "FullName");
-
             var detail = service.GetPetById(id);
             var model =
                 new PetEdit
                 {
+                    PetId = detail.PetId,
                     Name = detail.Name,
+                    Owner = detail.Owner,
                     ClientId = detail.ClientId,
-                    Type = detail.Type
+                    TypeOfPet = detail.TypeOfPet,
                 };
+
+            var owners = service.GetOwners();
+            ViewBag.Owners = owners;
+            ViewBag.SelectedOwner = owners.Where(owner => owner.ClientId == model.ClientId);
+
             return View(model);
         }
 
+        // POST: Pet/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, PetEdit model)
         {
-            if (!ModelState.IsValid) return View(model);
-
-            if (model.PetId != id)
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Id Mismatch");
-                return View(model);
-            }
-
-
-            var service = CreatePetService();
-            var owners = service.GetOwners();
-            ViewBag.ClientId = new SelectList(owners, "ClientId", "FullName");
-
-            if (service.UpdatePet(model))
-            {
-                TempData["SaveResult"] = "Pet updated";
+                var service = CreatePetService();
+                service.UpdatePet(model);
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Pet could not be updated.");
             return View(model);
         }
 
+        // GET: Pet/Delete
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var svc = CreatePetService();
-            var model = svc.GetPetById(id);
+            var service = CreatePetService();
+            var model = service.GetPetById(id);
 
             return View(model);
         }
 
-        [HttpPost]
+        // POST: Pet/Delete
         [ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
             var service = CreatePetService();
-
             service.DeletePet(id);
 
-            TempData["SaveResult"] = "Pet deleted";
-
             return RedirectToAction("Index");
-        }
-
-        private PetService CreatePetService()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new PetService(userId);
-            return service;
         }
     }
 }

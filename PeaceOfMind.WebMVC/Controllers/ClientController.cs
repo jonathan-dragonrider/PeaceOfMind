@@ -110,8 +110,5 @@ namespace PeaceOfMind.WebMVC.Controllers
 
             return RedirectToAction("Index");
         }
-
-        
     }
-
 }

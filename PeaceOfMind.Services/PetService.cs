@@ -11,6 +11,7 @@ namespace PeaceOfMind.Services
     public class PetService
     {
         private readonly Guid _userId;
+        private readonly ApplicationDbContext _context = new ApplicationDbContext();
 
         public PetService(Guid userId)
         {
@@ -19,103 +20,66 @@ namespace PeaceOfMind.Services
 
         public bool CreatePet(PetCreate model)
         {
-            var entity =
-                new Pet()
-                {
-                    Name = model.Name,
-                    TypeOfPet = model.Type,
-                    ClientId = model.ClientId
-                };
-
-            using (var ctx = new ApplicationDbContext())
+            var entity = new Pet
             {
-                ctx.Pets.Add(entity);
-                return ctx.SaveChanges() == 1;
-            }
-        }
+                Name = model.Name,
+                TypeOfPet = model.TypeOfPet,
+                ClientId = model.ClientId
+            };
 
-        public IEnumerable<Client> GetOwners()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                return ctx.Clients.ToList();
-            }
+            _context.Pets.Add(entity);
+            return _context.SaveChanges() == 1;
         }
 
         public IEnumerable<PetListItem> GetPets()
         {
-            using (var ctx = new ApplicationDbContext())
+            return _context.Pets.Select(e => new PetListItem
             {
-                var pets = ctx.Pets.ToList();
-                var petList = new List<PetListItem>();
-
-                foreach (var pet in pets)
-                {
-                    var newPet = new PetListItem
-                    {
-                        PetId = pet.PetId,
-                        Name = pet.Name,
-                        Owner = pet.Owner.FirstName + " " + pet.Owner.LastName
-                    };
-                    petList.Add(newPet);
-                }
-
-                return petList;
-
-            }
+                PetId = e.PetId,
+                Name = e.Name,
+                Owner = e.Owner.FirstName + " " + e.Owner.LastName,
+                TypeOfPet = e.TypeOfPet
+            }).ToArray();
         }
-
-        // Why can I access Owner.FullName below but not above?
 
         public PetDetail GetPetById(int id)
         {
-            using (var ctx = new ApplicationDbContext())
+            var entity = _context.Pets.Find(id);
+
+            return new PetDetail
             {
-                var entity =
-                    ctx
-                        .Pets
-                        .Single(e => e.PetId == id);
-                return
-                    new PetDetail
-                    {
-                        PetId = entity.PetId,
-                        Name = entity.Name,
-                        Owner = entity.Owner.FirstName + " " + entity.Owner.LastName,
-                        Type = entity.TypeOfPet
-                    };
-            }
+                PetId = entity.PetId,
+                ClientId = entity.Owner.ClientId,
+                Name = entity.Name,
+                Owner = entity.Owner.FirstName + " " + entity.Owner.LastName,
+                TypeOfPet = entity.TypeOfPet
+            };
         }
 
         public bool UpdatePet(PetEdit model)
         {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Pets
-                        .Single(e => e.PetId == model.PetId);
+            var entity = _context.Pets.Find(model.PetId);
 
-                entity.Name = model.Name;
-                entity.ClientId = model.ClientId;
+            entity.Name = model.Name;
+            entity.ClientId = model.ClientId;
+            entity.TypeOfPet = model.TypeOfPet;
 
-                return ctx.SaveChanges() == 1;
-            }
+            return _context.SaveChanges() == 1;
         }
 
-        public bool DeletePet(int serviceId)
+        public bool DeletePet(int id)
         {
-            using (var ctx = new ApplicationDbContext())
+            _context.Pets.Remove(_context.Pets.Find(id));
+            return _context.SaveChanges() == 1;
+        }
+
+        public List<Owner> GetOwners()
+        {
+            return _context.Clients.Select(e => new Owner
             {
-                var entity =
-                    ctx
-                        .Pets
-                        .Single(e => e.PetId == serviceId);
-
-                ctx.Pets.Remove(entity);
-
-                return ctx.SaveChanges() == 1;
-            }
+                ClientId = e.ClientId,
+                Name = e.FirstName + " " + e.LastName
+            }).ToList();
         }
     }
-
 }
