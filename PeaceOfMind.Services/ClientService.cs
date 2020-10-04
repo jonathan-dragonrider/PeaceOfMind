@@ -11,6 +11,7 @@ namespace PeaceOfMind.Services
     public class ClientService
     {
         private readonly Guid _userId;
+        private readonly ApplicationDbContext _context = new ApplicationDbContext();
 
         public ClientService(Guid userId)
         {
@@ -19,96 +20,60 @@ namespace PeaceOfMind.Services
 
         public bool CreateClient(ClientCreate model)
         {
-            var entity =
-                new Client()
-                {
-                    FirstName = model.FirstName,
-                    LastName = model.LastName,
-                    Email = model.Email,
-                    PhoneNumber = model.PhoneNumber,
-                    Address = model.Address
-                };
-
-            using (var ctx = new ApplicationDbContext())
+            var entity = new Client
             {
-                ctx.Clients.Add(entity);
-                return ctx.SaveChanges() == 1;
-            }
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                Email = model.Email,
+                PhoneNumber = model.PhoneNumber,
+                Address = model.Address
+            };
+
+            _context.Clients.Add(entity);
+            return _context.SaveChanges() == 1;
         }
 
         public IEnumerable<ClientListItem> GetClients()
         {
-            using (var ctx = new ApplicationDbContext())
+            return _context.Clients.Select(e => new ClientListItem
             {
-                var query =
-                    ctx
-                        .Clients
-                        .Select(
-                            e =>
-                                new ClientListItem
-                                {
-                                    ClientId = e.ClientId,
-                                    Name = e.FirstName + " " + e.LastName
-                                }
-                        );
-
-                return query.ToArray();
-            }
+                ClientId = e.ClientId,
+                Name = e.FirstName + " " + e.LastName
+            }).ToArray();
         }
 
         public ClientDetail GetClientById(int id)
         {
-            using (var ctx = new ApplicationDbContext())
+            var entity = _context.Clients.Find(id);
+
+            return new ClientDetail
             {
-                var entity =
-                    ctx
-                        .Clients
-                        .Single(e => e.ClientId == id);
-                return
-                    new ClientDetail
-                    {
-                        ClientId = entity.ClientId,
-                        FirstName = entity.FirstName,
-                        LastName = entity.LastName,
-                        Email = entity.Email,
-                        PhoneNumber = entity.PhoneNumber,
-                        Address = entity.Address,
-                    };
-            }
+                ClientId = entity.ClientId,
+                FirstName = entity.FirstName,
+                LastName = entity.LastName,
+                Email = entity.Email,
+                PhoneNumber = entity.PhoneNumber,
+                Address = entity.Address
+            };
         }
 
         public bool UpdateClient(ClientEdit model)
         {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Clients
-                        .Single(e => e.ClientId == model.ClientId);
+            var entity = _context.Clients.Find(model.ClientId);
+        
+            entity.FirstName = model.FirstName;
+            entity.LastName = model.LastName;
+            entity.Email = model.Email;
+            entity.PhoneNumber = model.PhoneNumber;
+            entity.Address = model.Address;
 
-                entity.FirstName = model.FirstName;
-                entity.LastName = model.LastName;
-                entity.Email = model.Email;
-                entity.PhoneNumber = model.PhoneNumber;
-                entity.Address = model.Address;
-
-                return ctx.SaveChanges() == 1;
-            }
+            return _context.SaveChanges() == 1;
         }
 
-        public bool DeleteClient(int serviceId)
+        public bool DeleteClient(int id)
         {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Clients
-                        .Single(e => e.ClientId == serviceId);
-
-                ctx.Clients.Remove(entity);
-
-                return ctx.SaveChanges() == 1;
-            }
+            _context.Clients.Remove(_context.Clients.Find(id));
+            return _context.SaveChanges() == 1;
         }
     }
 }
