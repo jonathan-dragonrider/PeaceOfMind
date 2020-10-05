@@ -58,7 +58,7 @@ namespace PeaceOfMind.Services
             return _context.Jobs.Select(e => new JobListItem
             {
                 JobId = e.JobId,
-                ServiceId = e.ServiceId,
+                Service = e.Service.Name,
                 StartTime = e.StartTime
             }).ToArray();
         }
@@ -129,10 +129,19 @@ namespace PeaceOfMind.Services
             return _context.SaveChanges() == 1;
         }
 
-        // Gets pets specific to client to display in drop down list
-        public List<PetDropDown> GetPets(int clientId)
+        // Gets pets specific to client to display in drop down list - 
+        //public List<PetDropDown> GetPets(int clientId)
+        //{
+        //    return _context.Clients.Find(clientId).Pets.Select(e => new PetDropDown
+        //    {
+        //        PetId = e.PetId,
+        //        Name = e.Name
+        //    }).ToList();
+        //}
+
+        public List<PetDropDown> GetPets()
         {
-            return _context.Clients.Find(clientId).Pets.Select(e => new PetDropDown
+            return _context.Pets.Select(e => new PetDropDown
             {
                 PetId = e.PetId,
                 Name = e.Name

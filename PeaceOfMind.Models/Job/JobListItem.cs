@@ -11,8 +11,7 @@ namespace PeaceOfMind.Models.Job
     {
         public int JobId { get; set; }
 
-        [Display(Name = "Service")]
-        public int ServiceId { get; set; }
+        public string Service { get; set; }
 
         [Display(Name = "Time")]
         public DateTime StartTime { get; set; }

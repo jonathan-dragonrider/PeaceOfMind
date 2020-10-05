@@ -29,6 +29,14 @@ namespace PeaceOfMind.WebMVC.Controllers
         // GET: Job/Create view
         public ActionResult Create()
         {
+            var service = CreateJobService();
+            var clients = service.GetClients();
+            var services = service.GetServices();
+            var pets = service.GetPets();
+            ViewBag.ClientId = new SelectList(clients, "ClientId", "Name");
+            ViewBag.ServiceId = new SelectList(services, "ServiceId", "Name");
+            ViewBag.PetIds = new SelectList(pets, "PetId", "Name");
+
             return View();
         }
 

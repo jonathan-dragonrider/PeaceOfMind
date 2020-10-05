@@ -66,6 +66,10 @@
     <Compile Include="Migrations\202010041759114_CleanUp.Designer.cs">
       <DependentUpon>202010041759114_CleanUp.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010051846330_AddedPetsToJobs.cs" />
+    <Compile Include="Migrations\202010051846330_AddedPetsToJobs.Designer.cs">
+      <DependentUpon>202010051846330_AddedPetsToJobs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pet.cs" />
     <Compile Include="PetToJob.cs" />
@@ -88,6 +92,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010041759114_CleanUp.resx">
       <DependentUpon>202010041759114_CleanUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010051846330_AddedPetsToJobs.resx">
+      <DependentUpon>202010051846330_AddedPetsToJobs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
