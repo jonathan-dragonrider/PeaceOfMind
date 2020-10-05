@@ -1,5 +1,7 @@
 ﻿using PeaceOfMind.Data;
+using PeaceOfMind.Models.DropDownLists;
 using PeaceOfMind.Models.Job;
+using PeaceOfMind.Models.Pet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -133,6 +135,24 @@ namespace PeaceOfMind.Services
             return _context.Clients.Find(clientId).Pets.Select(e => new PetDropDown
             {
                 PetId = e.PetId,
+                Name = e.Name
+            }).ToList();
+        }
+
+        public List<ClientDropDown> GetClients()
+        {
+            return _context.Clients.Select(e => new ClientDropDown
+            {
+                ClientId = e.ClientId,
+                Name = e.FirstName + " " + e.LastName
+            }).ToList();
+        }
+
+        public List<ServiceDropDown> GetServices()
+        {
+            return _context.Services.Select(e => new ServiceDropDown
+            {
+                ServiceId = e.ServiceId,
                 Name = e.Name
             }).ToList();
         }

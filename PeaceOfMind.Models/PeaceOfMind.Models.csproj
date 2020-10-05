@@ -75,8 +75,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Job\PetDropDown.cs" />
-    <Compile Include="Pet\Owner.cs" />
+    <Compile Include="DropDownLists\PetDropDown.cs" />
+    <Compile Include="DropDownLists\ClientDropDown.cs" />
+    <Compile Include="DropDownLists\ServiceDropDown.cs" />
     <Compile Include="Pet\PetCreate.cs" />
     <Compile Include="Pet\PetDetail.cs" />
     <Compile Include="Pet\PetEdit.cs" />

@@ -74,9 +74,9 @@ namespace PeaceOfMind.Services
         }
 
         // Gets client ids and names for drop down list
-        public List<Owner> GetOwners()
+        public List<ClientDropDown> GetOwners()
         {
-            return _context.Clients.Select(e => new Owner
+            return _context.Clients.Select(e => new ClientDropDown
             {
                 ClientId = e.ClientId,
                 Name = e.FirstName + " " + e.LastName

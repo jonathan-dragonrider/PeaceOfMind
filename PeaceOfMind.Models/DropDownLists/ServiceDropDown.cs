@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PeaceOfMind.Models.Pet
+namespace PeaceOfMind.Models.DropDownLists
 {
-    public class Owner
+    public class ServiceDropDown
     {
-        public int ClientId { get; set; }
+        public int ServiceId { get; set; }
         public string Name { get; set; }
+
     }
 }
