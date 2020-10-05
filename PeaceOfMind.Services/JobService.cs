@@ -66,14 +66,18 @@ namespace PeaceOfMind.Services
         public JobDetail GetJobById(int id)
         {
             var jobEntity = _context.Jobs.Find(id);
-            List<int> pets = _context.PetsToJobs.Where(e => e.JobId == id).Select(e => e.PetId).ToList();
+            List<string> petNames = _context.PetsToJobs.Where(e => e.JobId == id).Select(e => e.Pet.Name + " ").ToList();
+            List<int> petIds = _context.PetsToJobs.Where(e => e.JobId == id).Select(e => e.PetId).ToList();
 
             return new JobDetail
             {
                 JobId = jobEntity.JobId,
                 ClientId = jobEntity.ClientId,
+                Client = jobEntity.Client.FirstName + " " + jobEntity.Client.LastName,
                 ServiceId = jobEntity.ServiceId,
-                PetIds = pets,
+                Service = jobEntity.Service.Name,
+                PetIds = petIds,
+                PetNames = petNames,
                 StartTime = jobEntity.StartTime,
                 Note = jobEntity.Note,
             };

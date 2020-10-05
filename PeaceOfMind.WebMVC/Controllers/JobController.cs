@@ -120,5 +120,6 @@ namespace PeaceOfMind.WebMVC.Controllers
     }
 }
 // Next Steps:
-// Populate drop down lists
-// Figure out how to send lists through the view - checkboxes? drop down list but it lets you select multiple values?
+// done | Populate drop down lists
+// done | Figure out how to send lists through the view - checkboxes? drop down list but it lets you select multiple values?
+// what else?

@@ -11,18 +11,23 @@ namespace PeaceOfMind.Models.Job
     {
         public int JobId { get; set; }
 
-        [Display(Name = "Client")]
         public int ClientId { get; set; }
 
-        [Display(Name = "Service")]
+        public string Client { get; set; }
+
         public int ServiceId { get; set; }
 
-        [Display(Name = "Pet(s)")]
+        public string Service { get; set; }
+
         public List<int> PetIds { get; set; }
+
+        [Display(Name = "Pet(s)")]
+        public List<string> PetNames { get; set; }
 
         [Display(Name = "Time")]
         public DateTime StartTime { get; set; }
 
         public string Note { get; set; }
+
     }
 }
