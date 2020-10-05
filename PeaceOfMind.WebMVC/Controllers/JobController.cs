@@ -11,7 +11,14 @@ namespace PeaceOfMind.WebMVC.Controllers
 {
     public class JobController : Controller
     {
-        // GET: Job
+        private JobService CreateJobService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new JobService(userId);
+            return service;
+        }
+
+        // GET: Job/Index view
         public ActionResult Index()
         {
             var service = CreateJobService();
@@ -19,40 +26,37 @@ namespace PeaceOfMind.WebMVC.Controllers
             return View(model);
         }
 
-        // GET: Job/Create
+        // GET: Job/Create view
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Job/Create
+        // POST: Job/Create 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(JobCreate model)
         {
-            if (!ModelState.IsValid) return View(model);
-
-            var service = CreateJobService();
-
-            if (service.CreateJob(model))
+            if (ModelState.IsValid)
             {
-                TempData["SaveResult"] = "Job created";
+                var service = CreateJobService();
+                service.CreateJob(model);
                 return RedirectToAction("Index");
-            };
-
-            ModelState.AddModelError("", "Job could not be created.");
+            }
 
             return View(model);
         }
 
+        // GET: Job/Detail
         public ActionResult Details(int id)
         {
-            var svc = CreateJobService();
-            var model = svc.GetJobById(id);
+            var service = CreateJobService();
+            var model = service.GetJobById(id);
 
             return View(model);
         }
 
+        // GET: Job/Edit
         public ActionResult Edit(int id)
         {
             var service = CreateJobService();
@@ -62,64 +66,51 @@ namespace PeaceOfMind.WebMVC.Controllers
                 {
                     ClientId = detail.ClientId,
                     ServiceId = detail.ServiceId,
+                    PetIds = detail.PetIds,
                     StartTime = detail.StartTime,
-                    Note = detail.Note
+                    Note = detail.Note,
                 };
             return View(model);
         }
 
+        // POST: Job/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, JobEdit model)
         {
-            if (!ModelState.IsValid) return View(model);
-
-            if (model.JobId != id)
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Id Mismatch");
-                return View(model);
-            }
-
-            var service = CreateJobService();
-
-            if (service.UpdateJob(model))
-            {
-                TempData["SaveResult"] = "Job updated";
+                var service = CreateJobService();
+                service.UpdateJob(model);
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Job could not be updated.");
             return View(model);
         }
 
+        // GET: Job/Delete
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var svc = CreateJobService();
-            var model = svc.GetJobById(id);
+            var service = CreateJobService();
+            var model = service.GetJobById(id);
 
             return View(model);
         }
 
-        [HttpPost]
+        // POST: Job/Delete
         [ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
             var service = CreateJobService();
-
             service.DeleteJob(id);
-
-            TempData["SaveResult"] = "Job deleted";
 
             return RedirectToAction("Index");
         }
-
-        private JobService CreateJobService()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new JobService(userId);
-            return service;
-        }
     }
 }
+// Next Steps:
+// Populate drop down lists
+// Figure out how to send lists through the view - checkboxes? drop down list but it lets you select multiple values?

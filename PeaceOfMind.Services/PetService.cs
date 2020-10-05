@@ -73,6 +73,7 @@ namespace PeaceOfMind.Services
             return _context.SaveChanges() == 1;
         }
 
+        // Gets client ids and names for drop down list
         public List<Owner> GetOwners()
         {
             return _context.Clients.Select(e => new Owner

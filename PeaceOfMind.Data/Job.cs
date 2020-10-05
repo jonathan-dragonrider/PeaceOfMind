@@ -13,11 +13,6 @@ namespace PeaceOfMind.Data
         [Key]
         public int JobId { get; set; }
 
-        [Required]
-        public DateTime StartTime { get; set; }
-
-        public string Note { get; set; }
-
         [ForeignKey("Client")]
         public int ClientId { get; set; }
         public virtual Client Client { get; set; }
@@ -25,6 +20,11 @@ namespace PeaceOfMind.Data
         [ForeignKey("Service")]
         public int ServiceId { get; set; }
         public virtual Service Service { get; set; }
+
+        [Required]
+        public DateTime StartTime { get; set; }
+
+        public string Note { get; set; }
 
         public virtual ICollection<PetToJob> PetsToJobs { get; set; } = new List<PetToJob>();
 

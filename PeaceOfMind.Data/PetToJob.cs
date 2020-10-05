@@ -10,13 +10,12 @@ namespace PeaceOfMind.Data
 {
     public class PetToJob
     {
-        [Key]
-        public int PetToJobId { get; set; }
-
+        [Key, Column(Order = 0)]
         [ForeignKey("Pet")]
         public int PetId { get; set; }
         public virtual Pet Pet { get; set; }
 
+        [Key, Column(Order = 1)]
         [ForeignKey("Job")]
         public int JobId { get; set; }
         public virtual Job Job { get; set; }

@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace PeaceOfMind.Services
 {
     public class JobService
     {
         private readonly Guid _userId;
+        private readonly ApplicationDbContext _context = new ApplicationDbContext();
 
         public JobService(Guid userId)
         {
@@ -19,95 +21,120 @@ namespace PeaceOfMind.Services
 
         public bool CreateJob(JobCreate model)
         {
-            var entity =
-                new Job()
-                {
-                    ClientId = model.ClientId,
-                    ServiceId = model.ServiceId,
-                    StartTime = model.StartTime,
-                    Note = model.Note
-                };
-
-            using (var ctx = new ApplicationDbContext())
+            var jobEntity = new Job
             {
-                ctx.Jobs.Add(entity);
-                return ctx.SaveChanges() == 1;
+                ClientId = model.ClientId,
+                ServiceId = model.ServiceId,
+                StartTime = model.StartTime,
+                Note = model.Note
+            };
+
+            _context.Jobs.Add(jobEntity);
+            int savedChangeToJobs = _context.SaveChanges();
+
+            var petIds = model.PetIds;
+            int savedChangesToPetAssignments = 0;
+
+            // Creating PetToJob assigments - need this becuase one job could have multiple pets and there could be multiple jobs for the same pet
+            foreach (var petId in petIds)
+            {
+                var assignmentEntity = new PetToJob
+                {
+                    PetId = petId,
+                    JobId = jobEntity.JobId
+                };
+                _context.PetsToJobs.Add(assignmentEntity);
+                savedChangesToPetAssignments += _context.SaveChanges();
             }
+
+            // CreateJob is succesful if one (from job save) plus the amount of pets on the job is equal the amount of saved changes
+            return (savedChangeToJobs + savedChangesToPetAssignments == 1 + model.PetIds.Count());
         }
 
         public IEnumerable<JobListItem> GetJobs()
         {
-            using (var ctx = new ApplicationDbContext())
+            return _context.Jobs.Select(e => new JobListItem
             {
-                var query =
-                    ctx
-                        .Jobs
-                        .Select(
-                            e =>
-                                new JobListItem
-                                {
-                                    JobId = e.JobId,
-                                    ClientId = e.ClientId,
-                                    ServiceId = e.ServiceId,
-                                    StartTime = e.StartTime,
-                                }
-                        );
-
-                return query.ToArray();
-            }
+                JobId = e.JobId,
+                ServiceId = e.ServiceId,
+                StartTime = e.StartTime
+            }).ToArray();
         }
 
         public JobDetail GetJobById(int id)
         {
-            using (var ctx = new ApplicationDbContext())
+            var jobEntity = _context.Jobs.Find(id);
+            List<int> pets = _context.PetsToJobs.Where(e => e.JobId == id).Select(e => e.PetId).ToList();
+
+            return new JobDetail
             {
-                var entity =
-                    ctx
-                        .Jobs
-                        .Single(e => e.JobId == id);
-                return
-                    new JobDetail
-                    {
-                        JobId = entity.JobId,
-                        ServiceId = entity.ServiceId,
-                        StartTime = entity.StartTime,
-                        Note = entity.Note
-                    };
-            }
+                JobId = jobEntity.JobId,
+                ClientId = jobEntity.ClientId,
+                ServiceId = jobEntity.ServiceId,
+                PetIds = pets,
+                StartTime = jobEntity.StartTime,
+                Note = jobEntity.Note,
+            };
         }
 
         public bool UpdateJob(JobEdit model)
         {
-            using (var ctx = new ApplicationDbContext())
+            var jobEntity = _context.Jobs.Find(model.JobId);
+
+            jobEntity.ClientId = model.ClientId;
+            jobEntity.ServiceId = model.ServiceId;
+            jobEntity.StartTime = model.StartTime;
+            jobEntity.Note = model.Note;
+
+            int savedChangeToJobs = _context.SaveChanges();
+
+            var petAssignments = _context.PetsToJobs.Where(e => e.JobId == model.JobId);
+
+            // Pets on job - Is model equal to persistence?
+            List<int> petIds = petAssignments.Select(e => e.PetId).ToList();
+            bool areEqual = Enumerable.SequenceEqual(petIds.OrderBy(e => e), model.PetIds.OrderBy(e => e));
+
+            // If not, delete all and reassign
+            if (!areEqual)
             {
-                var entity =
-                    ctx
-                        .Jobs
-                        .Single(e => e.JobId == model.JobId);
+                foreach (var petAssignment in petAssignments)
+                {
+                    _context.PetsToJobs.Remove(petAssignment);
+                }
 
-                entity.ClientId = model.ClientId;
-                entity.ServiceId = model.ServiceId;
-                entity.StartTime = model.StartTime;
-                entity.Note = model.Note;
+                int savedChangesToPetAssignments = 0;
+                foreach (var petId in model.PetIds)
+                {
+                    var assignmentEntity = new PetToJob
+                    {
+                        PetId = petId,
+                        JobId = jobEntity.JobId
+                    };
+                    _context.PetsToJobs.Add(assignmentEntity);
+                    savedChangesToPetAssignments += _context.SaveChanges();
+                }
 
-
-                return ctx.SaveChanges() == 1;
+                return (savedChangeToJobs + savedChangesToPetAssignments == 1 + model.PetIds.Count());
             }
+
+            return savedChangeToJobs == 1;
+
         }
 
-        public bool DeleteJob(int serviceId)
+        public bool DeleteJob(int id)
         {
-            using (var ctx = new ApplicationDbContext())
+            _context.Jobs.Remove(_context.Jobs.Find(id));
+            return _context.SaveChanges() == 1;
+        }
+
+        // Gets pets specific to client to display in drop down list
+        public List<PetDropDown> GetPets(int clientId)
+        {
+            return _context.Clients.Find(clientId).Pets.Select(e => new PetDropDown
             {
-                var entity =
-                    ctx
-                        .Jobs
-                        .Single(e => e.JobId == serviceId);
-
-                ctx.Jobs.Remove(entity);
-
-                return ctx.SaveChanges() == 1;
-            }
+                PetId = e.PetId,
+                Name = e.Name
+            }).ToList();
         }
     }
 }
