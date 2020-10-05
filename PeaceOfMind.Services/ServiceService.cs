@@ -12,6 +12,7 @@ namespace PeaceOfMind.Services
     public class ServiceService
     {
         private readonly Guid _userId;
+        private readonly ApplicationDbContext _context = new ApplicationDbContext();
 
         public ServiceService(Guid userId)
         {
@@ -20,96 +21,60 @@ namespace PeaceOfMind.Services
 
         public bool CreateService(ServiceCreate model)
         {
-            var entity =
-                new Service()
-                {
-                    Name = model.Name,
-                    Cost = model.Cost,
-                    Duration = model.Duration,
-                    DurationUnit = model.DurationUnit,
-                    Description = model.Description
-                };
-
-            using (var ctx = new ApplicationDbContext())
+            var entity = new Service
             {
-                ctx.Services.Add(entity);
-                return ctx.SaveChanges() == 1;
-            }
+                Name = model.Name,
+                Cost = model.Cost,
+                Duration = model.Duration,
+                DurationUnit = model.DurationUnit,
+                Description = model.Description
+            };
+
+            _context.Services.Add(entity);
+            return _context.SaveChanges() == 1;
         }
 
         public IEnumerable<ServiceListItem> GetServices()
         {
-            using (var ctx = new ApplicationDbContext())
+            return _context.Services.Select(e => new ServiceListItem
             {
-                var query =
-                    ctx
-                        .Services
-                        .Select(
-                            e =>
-                                new ServiceListItem
-                                {
-                                    ServiceId = e.ServiceId,
-                                    Name = e.Name,
-                                }
-                        );
-
-                return query.ToArray();
-            }
+                ServiceId = e.ServiceId,
+                Name = e.Name
+            }).ToArray();
         }
 
         public ServiceDetail GetServiceById(int id)
         {
-            using (var ctx = new ApplicationDbContext())
+            var entity = _context.Services.Find(id);
+
+            return new ServiceDetail
             {
-                var entity =
-                    ctx
-                        .Services
-                        .Single(e => e.ServiceId == id);
-                return
-                    new ServiceDetail
-                    {
-                        ServiceId = entity.ServiceId,
-                        Name = entity.Name,
-                        Cost = entity.Cost,
-                        Duration = entity.Duration,
-                        DurationUnit = entity.DurationUnit,
-                        Description = entity.Description
-                    };
-            }
+                ServiceId = entity.ServiceId,
+                Name = entity.Name,
+                Cost = entity.Cost,
+                Duration = entity.Duration,
+                DurationUnit = entity.DurationUnit,
+                Description = entity.Description
+            };
         }
 
         public bool UpdateService(ServiceEdit model)
         {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Services
-                        .Single(e => e.ServiceId == model.ServiceId);
+            var entity = _context.Services.Find(model.ServiceId);
 
-                entity.Name = model.Name;
-                entity.Cost = model.Cost;
-                entity.Duration = model.Duration;
-                entity.DurationUnit = model.DurationUnit;
-                entity.Description = model.Description;
+            entity.Name = model.Name;
+            entity.Cost = model.Cost;
+            entity.Duration = model.Duration;
+            entity.DurationUnit = model.DurationUnit;
+            entity.Description = model.Description;
 
-                return ctx.SaveChanges() == 1;
-            }
+            return _context.SaveChanges() == 1;
         }
 
-        public bool DeleteService(int serviceId)
+        public bool DeleteService(int id)
         {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Services
-                        .Single(e => e.ServiceId == serviceId);
-
-                ctx.Services.Remove(entity);
-
-                return ctx.SaveChanges() == 1;
-            }
+            _context.Services.Remove(_context.Services.Find(id));
+            return _context.SaveChanges() == 1;
         }
     }
 }

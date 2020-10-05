@@ -13,7 +13,14 @@ namespace PeaceOfMind.WebMVC.Controllers
 {
     public class ServiceController : Controller
     {
-        // GET: Service
+        private ServiceService CreateServiceService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new ServiceService(userId);
+            return service;
+        }
+
+        // GET: Service/Index view
         public ActionResult Index()
         {
             var service = CreateServiceService();
@@ -21,40 +28,37 @@ namespace PeaceOfMind.WebMVC.Controllers
             return View(model);
         }
 
-        // GET: Service/Create
+        // GET: Service/Create view
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Service/Create
+        // POST: Service/Create 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(ServiceCreate model)
         {
-            if (!ModelState.IsValid) return View(model);
-
-            var service = CreateServiceService();
-
-            if (service.CreateService(model))
+            if (ModelState.IsValid)
             {
-                TempData["SaveResult"] = "Service created";
+                var service = CreateServiceService();
+                service.CreateService(model);
                 return RedirectToAction("Index");
-            };
-
-            ModelState.AddModelError("", "Service could not be created.");
+            }
 
             return View(model);
         }
 
+        // GET: Service/Detail
         public ActionResult Details(int id)
         {
-            var svc = CreateServiceService();
-            var model = svc.GetServiceById(id);
+            var service = CreateServiceService();
+            var model = service.GetServiceById(id);
 
             return View(model);
         }
 
+        // GET: Service/Edit
         public ActionResult Edit(int id)
         {
             var service = CreateServiceService();
@@ -72,58 +76,41 @@ namespace PeaceOfMind.WebMVC.Controllers
             return View(model);
         }
 
+        // POST: Service/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, ServiceEdit model)
         {
-            if (!ModelState.IsValid) return View(model);
-
-            if (model.ServiceId != id)
+            if (ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Id Mismatch");
-                return View(model);
-            }
-
-            var service = CreateServiceService();
-
-            if (service.UpdateService(model))
-            {
-                TempData["SaveResult"] = "Service updated";
+                var service = CreateServiceService();
+                service.UpdateService(model);
                 return RedirectToAction("Index");
             }
 
-            ModelState.AddModelError("", "Service could not be updated.");
             return View(model);
         }
 
+        // GET: Service/Delete
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var svc = CreateServiceService();
-            var model = svc.GetServiceById(id);
+            var service = CreateServiceService();
+            var model = service.GetServiceById(id);
 
             return View(model);
         }
 
-        [HttpPost]
+        // POST: Service/Delete
         [ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
             var service = CreateServiceService();
-
             service.DeleteService(id);
 
-            TempData["SaveResult"] = "Service deleted";
-
             return RedirectToAction("Index");
-        }
-
-        private ServiceService CreateServiceService()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new ServiceService(userId);
-            return service;
         }
     }
 }
