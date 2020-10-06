@@ -27,6 +27,7 @@ namespace PeaceOfMind.Services
             {
                 ClientId = model.ClientId,
                 ServiceId = model.ServiceId,
+                StartDate = model.StartDate,
                 StartTime = model.StartTime,
                 Note = model.Note
             };
@@ -59,6 +60,7 @@ namespace PeaceOfMind.Services
             {
                 JobId = e.JobId,
                 Service = e.Service.Name,
+                StartDate = e.StartDate,
                 StartTime = e.StartTime
             }).ToArray();
         }
@@ -78,6 +80,7 @@ namespace PeaceOfMind.Services
                 Service = jobEntity.Service.Name,
                 PetIds = petIds,
                 PetNames = petNames,
+                StartDate = jobEntity.StartDate,
                 StartTime = jobEntity.StartTime,
                 Note = jobEntity.Note,
             };
@@ -89,6 +92,7 @@ namespace PeaceOfMind.Services
 
             jobEntity.ClientId = model.ClientId;
             jobEntity.ServiceId = model.ServiceId;
+            jobEntity.StartDate = model.StartDate;
             jobEntity.StartTime = model.StartTime;
             jobEntity.Note = model.Note;
 

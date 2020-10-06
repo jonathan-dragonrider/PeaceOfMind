@@ -75,9 +75,25 @@ namespace PeaceOfMind.WebMVC.Controllers
                     ClientId = detail.ClientId,
                     ServiceId = detail.ServiceId,
                     PetIds = detail.PetIds,
-                    StartTime = detail.StartTime,
+                    StartDate = detail.StartDate,
                     Note = detail.Note,
                 };
+
+            var clients = service.GetClients();
+            ViewBag.Clients = clients;
+            ViewBag.SelectedClient = clients.Where(client => client.ClientId == model.ClientId);
+
+            var services = service.GetServices();
+            ViewBag.Services = services;
+            ViewBag.SelectedService = services.Where(svc => svc.ServiceId == model.ServiceId);
+
+            var pets = service.GetPets();
+            ViewBag.PetIds = new SelectList(pets, "PetId", "Name");
+
+            //var pets = service.GetPets();
+            //ViewBag.Pets = pets;
+            //ViewBag.SelectedPets = pets.Where(pets => pets.PetIds == model.PetIds);
+
             return View(model);
         }
 
@@ -123,3 +139,5 @@ namespace PeaceOfMind.WebMVC.Controllers
 // done | Populate drop down lists
 // done | Figure out how to send lists through the view - checkboxes? drop down list but it lets you select multiple values?
 // what else?
+
+// Stretch - have pet ListBox populate based on chosen Client

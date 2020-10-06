@@ -24,6 +24,9 @@ namespace PeaceOfMind.Models.Job
         [Display(Name = "Pet(s)")]
         public List<string> PetNames { get; set; }
 
+        [Display(Name = "Date")]
+        public DateTime StartDate { get; set; }
+
         [Display(Name = "Time")]
         public DateTime StartTime { get; set; }
 

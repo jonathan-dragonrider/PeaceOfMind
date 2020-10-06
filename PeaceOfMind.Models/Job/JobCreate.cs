@@ -26,7 +26,13 @@ namespace PeaceOfMind.Models.Job
         // Add StartDate and StartTime back together - this way there are two form fields for date and time, I feel like this would make it simpler for the user?
 
         [Required]
+        [Display(Name = "Date")]
+        [DataType(DataType.Date)]
+        public DateTime StartDate { get; set; }
+
+        [Required]
         [Display(Name = "Time")]
+        [DataType(DataType.Time)]
         public DateTime StartTime { get; set; }
 
         public string Note { get; set; }

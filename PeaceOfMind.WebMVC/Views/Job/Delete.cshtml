@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Delete";
+    var petNames = Model.PetNames;
 }
 
 <h2>Delete</h2>
@@ -12,27 +13,38 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.JobId)
+            @Html.DisplayNameFor(model => model.Client)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.JobId)
+            @Html.DisplayFor(model => model.Client)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ClientId)
+            @Html.DisplayNameFor(model => model.Service)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ClientId)
+            @Html.DisplayFor(model => model.Service)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ServiceId)
+            @Html.DisplayNameFor(model => model.PetNames)
+        </dt>
+
+        @foreach (var petName in petNames)
+        {
+            <dd>
+                @Html.DisplayFor(model => model.PetNames[petNames.IndexOf(petName)])
+            </dd>
+        }
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ServiceId)
+            @Html.DisplayFor(model => model.StartDate)
         </dd>
 
         <dt>
@@ -41,14 +53,6 @@
 
         <dd>
             @Html.DisplayFor(model => model.StartTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EndTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EndTime)
         </dd>
 
         <dt>

@@ -20,7 +20,12 @@ namespace PeaceOfMind.Models.Job
         [Display(Name = "Pet(s)")]
         public List<int> PetIds { get; set; }
 
+        [Display(Name = "Date")]
+        [DataType(DataType.Date)]
+        public DateTime StartDate { get; set; }
+
         [Display(Name = "Time")]
+        [DataType(DataType.Time)]
         public DateTime StartTime { get; set; }
 
         public string Note { get; set; }

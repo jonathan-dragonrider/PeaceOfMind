@@ -22,6 +22,9 @@ namespace PeaceOfMind.Data
         public virtual Service Service { get; set; }
 
         [Required]
+        public DateTime StartDate { get; set; }
+
+        [Required]
         public DateTime StartTime { get; set; }
 
         public string Note { get; set; }

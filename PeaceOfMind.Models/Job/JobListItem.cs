@@ -13,7 +13,11 @@ namespace PeaceOfMind.Models.Job
 
         public string Service { get; set; }
 
+        [Display(Name = "Date")]
+        public DateTime StartDate { get; set; }
+
         [Display(Name = "Time")]
         public DateTime StartTime { get; set; }
     }
+
 }
