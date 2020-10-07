@@ -183,12 +183,19 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-flatly.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="FullCalendar\locales-all.js" />
+    <Content Include="FullCalendar\locales-all.min.js" />
+    <Content Include="FullCalendar\main.css" />
+    <Content Include="FullCalendar\main.js" />
+    <Content Include="FullCalendar\main.min.css" />
+    <Content Include="FullCalendar\main.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
