@@ -36,5 +36,6 @@ namespace PeaceOfMind.Models.Job
         public DateTime StartTime { get; set; }
 
         public string Note { get; set; }
+
     }
 }

@@ -30,6 +30,8 @@ namespace PeaceOfMind.Models.Job
         [Display(Name = "Time")]
         public string StartTime { get; set; }
 
+        public string End { get; set; }
+
         public string Note { get; set; }
 
     }

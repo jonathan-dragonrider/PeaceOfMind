@@ -74,6 +74,10 @@
     <Compile Include="Migrations\202010061229352_StartDateAndTime.Designer.cs">
       <DependentUpon>202010061229352_StartDateAndTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202010071818548_JobEnd.cs" />
+    <Compile Include="Migrations\202010071818548_JobEnd.Designer.cs">
+      <DependentUpon>202010071818548_JobEnd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Pet.cs" />
     <Compile Include="PetToJob.cs" />
@@ -102,6 +106,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202010061229352_StartDateAndTime.resx">
       <DependentUpon>202010061229352_StartDateAndTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202010071818548_JobEnd.resx">
+      <DependentUpon>202010071818548_JobEnd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

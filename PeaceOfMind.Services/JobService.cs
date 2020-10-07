@@ -23,12 +23,26 @@ namespace PeaceOfMind.Services
 
         public bool CreateJob(JobCreate model)
         {
+
+            var service = _context.Services.Find(model.ServiceId);
+            TimeSpan span;
+
+            if (service.DurationUnit == DurationUnit.Minutes)
+            {
+                span = new TimeSpan(0, service.Duration, 0);
+            }
+            else
+            {
+                span = new TimeSpan(service.Duration, 0, 0);
+            }
+                        
             var jobEntity = new Job
             {
                 ClientId = model.ClientId,
                 ServiceId = model.ServiceId,
                 StartDate = model.StartDate,
                 StartTime = model.StartTime,
+                End = model.StartTime + span,
                 Note = model.Note
             };
 
@@ -92,6 +106,7 @@ namespace PeaceOfMind.Services
                 PetNames = petNames,
                 StartDate = jobEntity.StartDate.ToString("d"),
                 StartTime = jobEntity.StartTime.ToString("t"),
+                End = jobEntity.End.ToString("g"),
                 Note = jobEntity.Note,
             };
         }

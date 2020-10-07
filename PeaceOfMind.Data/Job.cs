@@ -27,6 +27,8 @@ namespace PeaceOfMind.Data
         [Required]
         public DateTime StartTime { get; set; }
 
+        public DateTime End { get; set; }
+
         public string Note { get; set; }
 
         public virtual ICollection<PetToJob> PetsToJobs { get; set; } = new List<PetToJob>();
