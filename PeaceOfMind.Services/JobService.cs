@@ -56,13 +56,23 @@ namespace PeaceOfMind.Services
 
         public IEnumerable<JobListItem> GetJobs()
         {
-            return _context.Jobs.Select(e => new JobListItem
+            var jobs = _context.Jobs;
+            List<JobListItem> jobListItems = new List<JobListItem>();
+
+            foreach (var job in jobs)
             {
-                JobId = e.JobId,
-                Service = e.Service.Name,
-                StartDate = e.StartDate,
-                StartTime = e.StartTime
-            }).ToArray();
+                var jobListItem = new JobListItem
+                {
+                    JobId = job.JobId,
+                    Service = job.Service.Name,
+                    StartDate = job.StartDate.ToString("d"),
+                    StartTime = job.StartTime.ToString("t"),
+                };
+                jobListItems.Add(jobListItem);
+            }
+
+            return jobListItems;
+            
         }
 
         public JobDetail GetJobById(int id)
@@ -80,8 +90,8 @@ namespace PeaceOfMind.Services
                 Service = jobEntity.Service.Name,
                 PetIds = petIds,
                 PetNames = petNames,
-                StartDate = jobEntity.StartDate,
-                StartTime = jobEntity.StartTime,
+                StartDate = jobEntity.StartDate.ToString("d"),
+                StartTime = jobEntity.StartTime.ToString("t"),
                 Note = jobEntity.Note,
             };
         }

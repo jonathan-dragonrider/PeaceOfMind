@@ -75,7 +75,8 @@ namespace PeaceOfMind.WebMVC.Controllers
                     ClientId = detail.ClientId,
                     ServiceId = detail.ServiceId,
                     PetIds = detail.PetIds,
-                    StartDate = detail.StartDate,
+                    StartDate = DateTime.Parse(detail.StartDate),
+                    StartTime = DateTime.Parse(detail.StartTime),
                     Note = detail.Note,
                 };
 
@@ -138,6 +139,6 @@ namespace PeaceOfMind.WebMVC.Controllers
 // Next Steps:
 // done | Populate drop down lists
 // done | Figure out how to send lists through the view - checkboxes? drop down list but it lets you select multiple values?
-// what else?
+// Parse StartDate and StartTime such that only the date and time are displayed
 
 // Stretch - have pet ListBox populate based on chosen Client

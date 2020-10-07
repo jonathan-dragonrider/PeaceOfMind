@@ -14,10 +14,10 @@ namespace PeaceOfMind.Models.Job
         public string Service { get; set; }
 
         [Display(Name = "Date")]
-        public DateTime StartDate { get; set; }
+        public string StartDate { get; set; }
 
         [Display(Name = "Time")]
-        public DateTime StartTime { get; set; }
+        public string StartTime { get; set; }
     }
 
 }

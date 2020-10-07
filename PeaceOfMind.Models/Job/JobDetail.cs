@@ -25,10 +25,10 @@ namespace PeaceOfMind.Models.Job
         public List<string> PetNames { get; set; }
 
         [Display(Name = "Date")]
-        public DateTime StartDate { get; set; }
+        public string StartDate { get; set; }
 
         [Display(Name = "Time")]
-        public DateTime StartTime { get; set; }
+        public string StartTime { get; set; }
 
         public string Note { get; set; }
 
