@@ -18,6 +18,10 @@ namespace PeaceOfMind.Models.Job
 
         [Display(Name = "Time")]
         public string StartTime { get; set; }
+
+        // For calendar
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
     }
 
 }
