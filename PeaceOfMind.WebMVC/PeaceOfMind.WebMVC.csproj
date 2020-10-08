@@ -196,6 +196,7 @@
     <Content Include="FullCalendar\main.js" />
     <Content Include="FullCalendar\main.min.css" />
     <Content Include="FullCalendar\main.min.js" />
+    <Content Include="FullCalendar\moment.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />

@@ -29,12 +29,6 @@ namespace PeaceOfMind.WebMVC.Controllers
             return View();
         }
 
-        public JsonResult GetEvents()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new JobService(userId);
-            var events = service.GetJobs();
-            return new JsonResult { Data = events, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-        }
+        
     }
 }

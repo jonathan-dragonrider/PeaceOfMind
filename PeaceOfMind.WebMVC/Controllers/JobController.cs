@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Script.Services;
+using System.Web.Services;
 
 namespace PeaceOfMind.WebMVC.Controllers
 {
@@ -133,6 +135,16 @@ namespace PeaceOfMind.WebMVC.Controllers
             service.DeleteJob(id);
 
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public JsonResult GetEvents()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new JobService(userId);
+
+            var events = service.GetJobs();
+            return Json(events, JsonRequestBehavior.AllowGet);
         }
     }
 }

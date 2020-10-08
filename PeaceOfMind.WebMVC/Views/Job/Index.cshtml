@@ -22,23 +22,73 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Service)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.StartDate)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.StartTime)
-    </td>
-    <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.JobId }) |
-        @Html.ActionLink("Details", "Details", new { id = item.JobId }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.JobId })
-    </td>
-</tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.JobId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.JobId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.JobId })
+            </td>
+        </tr>
+    }
 
 </table>
+
+@*<div id="calendar"></div>
+
+@foreach (var item in Model)
+{
+    <script>
+        calendar.addEvent({
+            title: @item.Service,
+            start: @item.Start,
+            end: @item.End
+        })
+    </script>
+}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                center: 'addEventButton'
+            },
+            customButtons: {
+                addEventButton: {
+                    text: 'add event...',
+                    click: function () {
+                        var dateStr = prompt('Enter a date in YYYY-MM-DD format');
+                        var date = new Date(dateStr + 'T00:00:00'); // will be in local time
+
+                        if (!isNaN(date.valueOf())) { // valid?
+                            calendar.addEvent({
+                                title: 'dynamic event',
+                                start: date,
+                                allDay: true
+                            });
+                            alert('Great. Now, update your database...');
+                        } else {
+                            alert('Invalid date.');
+                        }
+                    }
+                }
+            }
+        });
+
+        calendar.render();
+    });
+</script>*@
+

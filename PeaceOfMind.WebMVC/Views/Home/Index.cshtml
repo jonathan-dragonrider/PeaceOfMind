@@ -8,42 +8,147 @@
 
 <div id="calendar"></div>
 
-@*<script>
-    $(document).ready(function () {
-        var events = [];
+<script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var calendarEl = document.getElementById("calendar");
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: "dayGridMonth",
+                events: "@Url.Action("GetEvents", "Job")"
+            });
+            calendar.render();
+        });
+</script>
+
+<table id="tblJob" class="table table-bordered table-striped table-responsive table-hover">
+    <thead>
+        <tr>
+            <th align="left" class="productth">Service</th>
+            <th align="left" class="productth">Start Date</th>
+            <th align="left" class="productth">Start Time</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+        function LoadData() {
+        $("#tblJob tbody tr").remove();
         $.ajax({
-            type: "GET",
-            url: "/home/GetEvents",
+            type: 'GET',
+            url: '@Url.Action("GetEvents", "Job")',
+            dataType: 'json',
+            data: { id: '' },
             success: function (data) {
-                $.each(data, function (i, v) {
-                    events.push({
-                        title: v.Service,
-                        start: moment(v.Start),
-                        end: v.End != null ? moment(v.End) : null,
-                    });
-                })
-                GenerateCalendar(events);
+                var items = '';
+                $.each(data, function (i, item) {
+                    var rows = "<tr>"
+                    + "<td class='prtoducttd'>" + item.Service + "</td>"
+                    + "<td class='prtoducttd'>" + item.StartDate + "</td>"
+                    + "<td class='prtoducttd'>" + item.StartTime + "</td>"
+                    + "</tr>";
+                    $('#tblJob tbody').append(rows);
+                });
             },
-            error: function (error) {
-                alert('failed');
+            error: function (ex) {
+                var r = jQuery.parseJSON(response.responseText);
+                alert("Message: " + r.Message);
+                alert("StackTrace: " + r.StackTrace);
+                alert("ExceptionType: " + r.ExceptionType);
+            }
+        });
+        return false;
+    }
+    </script>
+}
+
+@* Third Attempt *@
+@*<script type="text/javascript">
+        $.ajax({
+            url: '@Url.Action("GetEvents", "Job")',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function() { alert('Success'); },
+            error: function() { alert('A error'); }
+        });
+    </script>*@
+
+@* Second Attempt *@
+@*<form id="form1" runat="server">
+        <input type="button" id="Jobs" value="Get Jobs" />
+        <div id="output"></div>
+    </form>
+
+    <script type="text/javascript">
+
+        $(function () {
+            $('#Jobs').click(getJobs);
+        });
+
+        function getCars() {
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:44304/Job/GetEvents",
+                data: "{}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    var jobs = response.d;
+                    $('#output').empty();
+                    $.each(jobs, function (index, job) {
+                        $('#output').append('<p><strong>' + job.Service
+                            + '</strong><br /> Start: ' +
+                            job.StartDate + '<br />End: ' +
+                            job.StartTime);
+                    });
+                },
+                failure: function (msg) {
+                    $('#output').text(msg);
+                }
+            });
+        }
+    </script>*@
+
+@* First Attempt *@
+@*<script>
+        $(document).ready(function () {
+            var events = [];
+            $.ajax({
+                type: "GET",
+                url: "/home/GetEvents",
+                success: function (data) {
+                    $.each(data, function (i, v) {
+                        events.push({
+                            title: v.Service,
+                            start: moment(v.Start),
+                            end: v.End != null ? moment(v.End) : null,
+                        });
+                    })
+                    GenerateCalendar(events);
+                },
+                error: function (error) {
+                    alert('failed');
+                }
+            })
+
+            function GenerateCalendar(events) {
+                $('#calendar').fullCalendar('destroy');
+                $('#calendar').fullCalendar({
+                    contentHeight: 400,
+                    defaultDate: new Date(),
+                    timeFormat: 'h(:mm)a',
+                    header: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,basicWeek,basicDay,agenda'
+                    },
+                    eventLimit: true,
+                    eventColer: '#378006',
+                    events: events
+                })
             }
         })
-
-        function GenerateCalendar(events) {
-            $('#calendar').fullCalendar('destroy');
-            $('#calendar').fullCalendar({
-                contentHeight: 400,
-                defaultDate: new Date(),
-                timeFormat: 'h(:mm)a',
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,basicWeek,basicDay,agenda'
-                },
-                eventLimit: true,
-                eventColer: '#378006',
-                events: events
-            })
-        }
-    })
-</script>*@
+    </script>*@
