@@ -13,7 +13,7 @@
             var calendarEl = document.getElementById("calendar");
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: "dayGridMonth",
-                events: "@Url.Action("GetEvents", "Job")"
+                events: "/Job/GetEvents"
             });
             calendar.render();
         });
@@ -22,14 +22,16 @@
 <table id="tblJob" class="table table-bordered table-striped table-responsive table-hover">
     <thead>
         <tr>
-            <th align="left" class="productth">Service</th>
-            <th align="left" class="productth">Start Date</th>
-            <th align="left" class="productth">Start Time</th>
+            <th align="left" class="productth">id</th>
+            <th align="left" class="productth">title</th>
+            <th align="left" class="productth">start</th>
+            <th align="left" class="productth">end</th>
         </tr>
     </thead>
     <tbody></tbody>
 </table>
 
+@*@Ajax.ActionLink("Get Events", "GetEvents", "Job")*@
 
 @section Scripts
 {
@@ -39,16 +41,17 @@
         $("#tblJob tbody tr").remove();
         $.ajax({
             type: 'GET',
-            url: '@Url.Action("GetEvents", "Job")',
+            url: 'https://localhost:44304/Job/GetEvents',
             dataType: 'json',
             data: { id: '' },
             success: function (data) {
                 var items = '';
                 $.each(data, function (i, item) {
                     var rows = "<tr>"
-                    + "<td class='prtoducttd'>" + item.Service + "</td>"
-                    + "<td class='prtoducttd'>" + item.StartDate + "</td>"
-                    + "<td class='prtoducttd'>" + item.StartTime + "</td>"
+                    + "<td class='prtoducttd'>" + item.id + "</td>"
+                    + "<td class='prtoducttd'>" + item.title + "</td>"
+                    + "<td class='prtoducttd'>" + item.start + "</td>"
+                    + "<td class='prtoducttd'>" + item.end + "</td>"
                     + "</tr>";
                     $('#tblJob tbody').append(rows);
                 });

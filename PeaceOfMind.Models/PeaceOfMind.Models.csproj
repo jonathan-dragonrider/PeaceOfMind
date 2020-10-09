@@ -78,6 +78,7 @@
     <Compile Include="DropDownLists\PetDropDown.cs" />
     <Compile Include="DropDownLists\ClientDropDown.cs" />
     <Compile Include="DropDownLists\ServiceDropDown.cs" />
+    <Compile Include="Job\JobEvent.cs" />
     <Compile Include="Pet\PetCreate.cs" />
     <Compile Include="Pet\PetDetail.cs" />
     <Compile Include="Pet\PetEdit.cs" />

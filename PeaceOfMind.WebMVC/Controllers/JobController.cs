@@ -137,17 +137,37 @@ namespace PeaceOfMind.WebMVC.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public JsonResult GetEvents()
-        {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var service = new JobService(userId);
+        //[HttpGet]
+        //public ActionResult GetEvents()
+        //{
+        //    var userId = Guid.Parse(User.Identity.GetUserId());
+        //    var service = new JobService(userId);
 
-            var events = service.GetJobs();
-            return Json(events, JsonRequestBehavior.AllowGet);
+        //    var events = service.GetJobs();
+        //    return Json(events, JsonRequestBehavior.AllowGet);
+        //}
+
+        [HttpGet]
+        public ActionResult GetEvents()
+        {
+            var jobEvent = new JobEvent
+            {
+                id = 1,
+                title = "test",
+                start = "2020-10-08",
+                end = "2020-10-09"
+            };
+
+            return Json(jobEvent, JsonRequestBehavior.AllowGet);
         }
+
+
+
     }
 }
+
+
+
 // Next Steps:
 // done | Populate drop down lists
 // done | Figure out how to send lists through the view - checkboxes? drop down list but it lets you select multiple values?
