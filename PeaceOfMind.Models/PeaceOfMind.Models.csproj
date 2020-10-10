@@ -49,6 +49,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
@@ -78,6 +80,7 @@
     <Compile Include="DropDownLists\PetDropDown.cs" />
     <Compile Include="DropDownLists\ClientDropDown.cs" />
     <Compile Include="DropDownLists\ServiceDropDown.cs" />
+    <Compile Include="calendarjson.cs" />
     <Compile Include="Job\JobEvent.cs" />
     <Compile Include="Pet\PetCreate.cs" />
     <Compile Include="Pet\PetDetail.cs" />
@@ -96,6 +99,7 @@
     <Compile Include="Service\ServiceDetail.cs" />
     <Compile Include="Service\ServiceEdit.cs" />
     <Compile Include="Service\ServiceListItem.cs" />
+    <Compile Include="CalendarEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
