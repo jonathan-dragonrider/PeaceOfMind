@@ -1,5 +1,6 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+
 }
 
 <div class="jumbotron">
@@ -9,14 +10,26 @@
 <div id="calendar"></div>
 
 <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var calendarEl = document.getElementById("calendar");
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: "dayGridMonth",
-                events: "/Job/GetEvents"
-            });
-            calendar.render();
+
+    //var jobEvents = [];
+    //$(function () {
+    //    $.getJSON("/Home/GetEvents", function (pomResponse) {
+    //        jobEvents = pomResponse.jobEvents;
+    //    });
+    //});
+
+    //var jobEvents = "@Url.Content("/Home/GetEvents")";
+
+    document.addEventListener("DOMContentLoaded", function () {
+        var calendarEl = document.getElementById("calendar");
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: "dayGridMonth",
+            events: "C:\Users\jonph\Desktop\ElevenFifty\RedBadge\PeaceOfMind\PeaceOfMind.WebMVC\FullCalendar\events.json"
         });
+        calendar.render();
+    });
+
+
 </script>
 
 <table id="tblJob" class="table table-bordered table-striped table-responsive table-hover">
@@ -31,7 +44,6 @@
     <tbody></tbody>
 </table>
 
-@*@Ajax.ActionLink("Get Events", "GetEvents", "Job")*@
 
 @section Scripts
 {

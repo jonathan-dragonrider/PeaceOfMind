@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
+using PeaceOfMind.Models.Job;
 using PeaceOfMind.Services;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,13 @@ namespace PeaceOfMind.WebMVC.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var jobEvent = new JobEvent
+            {
+                id = 1,
+                title = "test",
+                start = "2020-10-10"
+            };
+            return View(jobEvent);
         }
 
         public ActionResult About()
@@ -29,6 +36,18 @@ namespace PeaceOfMind.WebMVC.Controllers
             return View();
         }
 
-        
+        [HttpGet]
+        public ActionResult GetEvents()
+        {
+            var jobEvent = new JobEvent
+            {
+                id = 1,
+                title = "test",
+                start = "2020-10-10",
+            };
+
+            return Json(jobEvent, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
