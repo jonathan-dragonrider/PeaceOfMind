@@ -36,7 +36,6 @@ namespace PeaceOfMind.WebMVC.Controllers
             return View();
         }
 
-        [HttpGet]
         public ActionResult GetEvents()
         {
             var jobEvent = new JobEvent
@@ -46,7 +45,7 @@ namespace PeaceOfMind.WebMVC.Controllers
                 start = "2020-10-10",
             };
 
-            return Json(jobEvent, JsonRequestBehavior.AllowGet);
+            return new JsonResult { Data = jobEvent, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
     }
