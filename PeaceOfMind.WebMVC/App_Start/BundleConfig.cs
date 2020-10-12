@@ -29,7 +29,8 @@ namespace PeaceOfMind.WebMVC
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/Site.css",
-                      "~/FullCalendar/main.css"));
+                      "~/FullCalendar/main.css",
+                      "~/Content/styles-sb-admin.css"));
         }
     }
 }
