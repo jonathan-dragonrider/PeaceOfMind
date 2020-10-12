@@ -80,7 +80,6 @@
     <Compile Include="DropDownLists\PetDropDown.cs" />
     <Compile Include="DropDownLists\ClientDropDown.cs" />
     <Compile Include="DropDownLists\ServiceDropDown.cs" />
-    <Compile Include="calendarjson.cs" />
     <Compile Include="Job\JobEvent.cs" />
     <Compile Include="Pet\PetCreate.cs" />
     <Compile Include="Pet\PetDetail.cs" />
@@ -99,7 +98,6 @@
     <Compile Include="Service\ServiceDetail.cs" />
     <Compile Include="Service\ServiceEdit.cs" />
     <Compile Include="Service\ServiceListItem.cs" />
-    <Compile Include="CalendarEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
