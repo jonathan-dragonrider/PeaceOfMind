@@ -27,10 +27,9 @@ namespace PeaceOfMind.WebMVC
                       "~/FullCalendar/moment.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
                       "~/Content/Site.css",
-                      "~/FullCalendar/main.css",
-                      "~/Content/styles-sb-admin.css"));
+                      "~/Content/bootstrap.css",
+                      "~/FullCalendar/main.css"));
         }
     }
 }
