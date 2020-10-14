@@ -5,72 +5,80 @@
     var petNames = Model.PetNames;
 }
 
-<h2>Delete</h2>
+<div class="row jobContainer">
+    <div class="col-md-2 sidebar">
+        <ul class="nav">
+            <li>@Html.ActionLink("New Job", "Create")</li>
+            <li>@Html.ActionLink("All Jobs", "Index")</li>
+            <li>@Html.ActionLink("Today's Schedule", "Today")</li>
+        </ul>
+    </div>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>JobDetail</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Client)
-        </dt>
+    <div class="col-md-10">
+        <h3 class="text-center">Are your sure?</h3>
 
-        <dd>
-            @Html.DisplayFor(model => model.Client)
-        </dd>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Client)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Service)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Service)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PetNames)
-        </dt>
-
-        @foreach (var petName in petNames)
-        {
             <dd>
-                @Html.DisplayFor(model => model.PetNames[petNames.IndexOf(petName)])
+                @Html.DisplayFor(model => model.Client)
             </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Service)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Service)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PetNames)
+            </dt>
+
+            @foreach (var petName in petNames)
+            {
+                <dd>
+                    @Html.DisplayFor(model => model.PetNames[petNames.IndexOf(petName)])
+                </dd>
+            }
+
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.StartTime)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Note)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Note)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color text-center">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+            </div>
         }
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Note)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Note)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-</div>
+    </div>
+    </div>

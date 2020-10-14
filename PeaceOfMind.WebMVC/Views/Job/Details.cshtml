@@ -4,75 +4,83 @@
     ViewBag.Title = "Details";
     var petNames = Model.PetNames;
 }
+<div class="row jobContainer">
+    <div class="col-md-2 sidebar">
+        <ul class="nav">
+            <li>@Html.ActionLink("New Job", "Create")</li>
+            <li>@Html.ActionLink("All Jobs", "Index")</li>
+            <li>@Html.ActionLink("Today's Schedule", "Today")</li>
+        </ul>
+    </div>
 
-<h2>Details</h2>
+    <div class="col-md-10">
+        <h2 class="text-center">Job Details</h2>
 
-<div>
-    <h4>JobDetail</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Client)
-        </dt>
+        <hr />
+        <dl class="dl-horizontal" style="width:100%">
+            <dt>
+                @Html.DisplayNameFor(model => model.Client)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Client)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Service)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Service)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PetNames)
-        </dt>
-
-        @foreach (var petName in petNames)
-        {
             <dd>
-                @Html.DisplayFor(model => model.PetNames[petNames.IndexOf(petName)])
+                @Html.DisplayFor(model => model.Client)
             </dd>
-        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Service)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Service)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartTime)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.PetNames)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartTime)
-        </dd>
+            @foreach (var petName in petNames)
+            {
+                <dd>
+                    @Html.DisplayFor(model => model.PetNames[petNames.IndexOf(petName)])
+                </dd>
+            }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.End)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.End)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.StartDate)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Note)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Note)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.StartTime)
+            </dd>
 
-    </dl>
+            <dt>
+                @Html.DisplayNameFor(model => model.End)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.End)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Note)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Note)
+            </dd>
+
+        </dl>
+        <div class="text-center">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.JobId }, htmlAttributes: new { @class = "btn btn-primary" })
+            @Html.ActionLink("Delete", "Delete", new { id = Model.JobId }, htmlAttributes: new { @class = "btn btn-primary" })
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.JobId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

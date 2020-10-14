@@ -100,6 +100,47 @@ namespace PeaceOfMind.Services
             
         }
 
+        public IEnumerable<JobListItem> GetTodaysJobs()
+        {
+            var jobs = _context.Jobs.Where(j => j.StartDate.Day == DateTime.Now.Day);
+            List<JobListItem> jobListItems = new List<JobListItem>();
+
+            if (jobs.Any())
+            {
+
+                foreach (var job in jobs)
+                {
+                    TimeSpan span;
+                    if (job.Service.DurationUnit == DurationUnit.Minutes)
+                    {
+                        span = new TimeSpan(0, job.Service.Duration, 0);
+                    }
+                    else
+                    {
+                        span = new TimeSpan(job.Service.Duration, 0, 0);
+                    }
+                    var jobListItem = new JobListItem
+                    {
+                        JobId = job.JobId,
+                        Service = job.Service.Name,
+                        StartDate = job.StartDate.ToString("d"),
+                        StartTime = job.StartTime.ToString("t"),
+                        Start = job.End - span,
+                        End = job.End
+                    };
+                    jobListItems.Add(jobListItem);
+                }
+
+                return jobListItems;
+            }
+            else
+            {
+                var noJobs = new List<JobListItem>();
+                return noJobs;
+            }
+        }
+
+
         public JobDetail GetJobById(int id)
         {
             var jobEntity = _context.Jobs.Find(id);
@@ -209,7 +250,6 @@ namespace PeaceOfMind.Services
                 Name = e.Name
             }).ToList();
         }
-
 
     }
 }

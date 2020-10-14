@@ -28,6 +28,13 @@ namespace PeaceOfMind.WebMVC.Controllers
             return View(model);
         }
 
+        public ActionResult Today()
+        {
+            var service = CreateJobService();
+            var model = service.GetTodaysJobs();
+            return View(model);
+        }
+
         // GET: Job/Create view
         public ActionResult Create()
         {

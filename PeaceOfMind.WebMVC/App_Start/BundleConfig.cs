@@ -22,14 +22,9 @@ namespace PeaceOfMind.WebMVC
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/fullcalendar").Include(
-                      "~/FullCalendar/main.js",
-                      "~/FullCalendar/moment.js"));
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/Site.css",
-                      "~/Content/bootstrap.css",
-                      "~/FullCalendar/main.css"));
+                      "~/Content/bootstrap.css"));
         }
     }
 }

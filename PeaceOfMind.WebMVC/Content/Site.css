@@ -23,65 +23,77 @@ textarea {
     max-width: 280px;
 }
 
-/* The side navigation menu */
 .sidebar {
     margin: 0;
-    padding: 0;
-    width: 200px;
+    padding: 10px 0 0 0;
     background-color: #f1f1f1;
-    position: fixed;
-    height: 100%;
-    overflow: auto;
+    min-height: 100%;
+    position: absolute;
 }
 
-/* Sidebar links */
-.sidebar a {
+.sidebar a{
     display: block;
-    color: black;
-    padding: 16px;
+    padding: 16px 0 0 0;
     text-decoration: none;
 }
 
-/* Active/current link */
 .sidebar a.active {
     background-color: #4CAF50;
     color: white;
 }
 
-/* Links on mouse-over */
 .sidebar a:hover:not(.active) {
     background-color: #555;
     color: white;
 }
 
-/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
-div.content {
-    margin-left: 200px;
-    padding: 1px 16px;
-    height: 1000px;
+.jobContainer {
+    display: flex;
+    align-items: stretch;
 }
 
-/* On screens that are less than 700px wide, make the sidebar into a topbar */
-@media screen and (max-width: 700px) {
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-    }
-
-        .sidebar a {
-            float: left;
-        }
-
-    div.content {
-        margin-left: 0;
-    }
+.todaysschedule {
+    padding: 20px;
 }
 
-/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-@media screen and (max-width: 400px) {
-    .sidebar a {
-        text-align: center;
-        float: none;
-    }
+.test {
+    width: 100%;
+    border-bottom: 1px solid #000;
+    line-height: 0.1em;
+    margin: 50px 0 20px;
 }
+
+.test span {
+    background: #fff;
+    padding: 0 10px;
+}
+
+.my-table {
+    padding-left: 0;
+    list-style: none;
+    margin-left: -5px;
+}
+
+.my-table > li {
+    display: inline-block;
+    padding-right: 60px;
+    padding-left: 60px;
+    width: auto;
+}
+
+.my-table-row {
+    position: relative;
+}
+
+.my-table-row > a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.my-table-row > a:hover {
+    border: 3px solid rgb(255, 102, 102);
+}
+
