@@ -4,41 +4,47 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="row jobContainer">
+    <div class="col-md-2 sidebar">
+        <ul class="nav">
+            <li>@Html.ActionLink("New Pet", "Create")</li>
+            <li><a href="#">Search</a></li>
+        </ul>
+    </div>
+    <div class="col-md-10 text-center" style="padding-left: 5em">
+        <h2>All Jobs</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TypeOfPet)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Owner)
-        </th>
-    </tr>
+        <hr />
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(model => item.TypeOfPet)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Owner)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.PetId }) |
-            @Html.ActionLink("Details", "Details", new { id = item.PetId }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.PetId })
-        </td>
-    </tr>
-}
+        <div class="row">
+            <div class="col-xs-3">
+                <p>Name</p>
+            </div>
+            <div class="col-xs-3" style="margin-right:20px">
+                <p>Type</p>
+            </div>
+            <div class="col-xs-3">
+                <p>Owner</p>
+            </div>
+        </div>
 
-</table>
+        <hr />
+
+        @foreach (var item in Model)
+        {
+            <div class="row my-table-row">
+                <div class="col-xs-3">
+                    <p>@item.Name</p>
+                </div>
+                <div class="col-xs-3" style="margin-right:20px">
+                    <p>@item.TypeOfPet</p>
+                </div>
+                <div class="col-xs-3">
+                    <p>@item.Owner</p>
+                </div>
+                @Html.ActionLink(" ", "Details", new { id = item.PetId })
+            </div>
+        }
+
+    </div>
+</div>

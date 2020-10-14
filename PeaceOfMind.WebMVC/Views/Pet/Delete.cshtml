@@ -4,45 +4,52 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<div class="row jobContainer">
+    <div class="col-md-2 sidebar">
+        <ul class="nav">
+            <li>@Html.ActionLink("New Pet", "Create")</li>
+            <li>@Html.ActionLink("All Pets", "Index")</li>
+            <li><a href="#">Search</a></li>
+        </ul>
+    </div>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>PetDetail</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <div class="col-md-10">
+        <h3 class="text-center">Are you sure?</h3>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.TypeOfPet)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.TypeOfPet)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TypeOfPet)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.TypeOfPet)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Owner)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Owner)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Owner)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Owner)
+            </dd>
 
-    </dl>
+        </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-</div>
+            <div class="form-actions no-color text-center">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+            </div>
+        }
+    </div>
+    </div>
