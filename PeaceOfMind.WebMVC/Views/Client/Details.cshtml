@@ -3,64 +3,70 @@
 @{
     ViewBag.Title = "Details";
 }
+<div class="row jobContainer">
+    <div class="col-md-2 sidebar">
+        <ul class="nav">
+            <li>@Html.ActionLink("New Client", "Create")</li>
+            <li>@Html.ActionLink("All Clients", "Index")</li>
+            <li><a href="#">Search</a></li>
+        </ul>
+    </div>
+    <div class="col-md-10">
+        <h2 class="text-center">Client Details</h2>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ClientId)
+            </dt>
 
-<h2>Details</h2>
+            <dd>
+                @Html.DisplayFor(model => model.ClientId)
+            </dd>
 
-<div>
-    <h4>ClientDetail</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ClientId)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.ClientId)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ClientId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </dl>
+        <div class="text-center">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ClientId }, htmlAttributes: new { @class = "btn btn-primary" })
+            @Html.ActionLink("Delete", "Delete", new { id = Model.ClientId }, htmlAttributes: new { @class = "btn btn-primary" })
+        </div>
+    </div>
+    </div>
