@@ -7,24 +7,17 @@
 <div class="row jobContainer">
     <div class="col-md-2 sidebar">
         <ul class="nav">
-            <li>@Html.ActionLink("New Job", "Create")</li>
-            <li>@Html.ActionLink("Today's Schedule", "Today")</li>
+            <li>@Html.ActionLink("New Service", "Create")</li>
         </ul>
     </div>
     <div class="col-md-10 text-center" style="padding-left: 5em">
-        <h2>All Jobs</h2>
+        <h2>All Services</h2>
 
         <hr />
 
         <div class="row">
             <div class="col-xs-3">
-                <p>Job</p>
-            </div>
-            <div class="col-xs-3" style="margin-right:20px">
-                <p>Date</p>
-            </div>
-            <div class="col-xs-3">
-                <p>Time</p>
+                <p>Name</p>
             </div>
         </div>
 
@@ -34,15 +27,9 @@
         {
             <div class="row my-table-row">
                 <div class="col-xs-3">
-                    <p>@item.Service</p>
+                    <p>@item.Name</p>
                 </div>
-                <div class="col-xs-3" style="margin-right:20px">
-                    <p>@item.StartDate</p>
-                </div>
-                <div class="col-xs-3">
-                    <p>@item.StartTime</p>
-                </div>
-                @Html.ActionLink(" ", "Details", new { id = item.JobId })
+                @Html.ActionLink(" ", "Details", new { id = item.ServiceId })
             </div>
         }
 
